@@ -1,0 +1,1124 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="[Flask] Web 框架分步入门">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-flask-sept-2026/%E7%AE%80%E4%BB%8B.html">
+      
+      
+        <link rel="prev" href="index.html">
+      
+      
+        <link rel="next" href="%E5%8A%A8%E4%BD%9C-%E8%B7%AF%E7%94%B1-%E5%93%8D%E5%BA%94.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1. 简介 - [Flask] Web 框架分步入门</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "[Flask] Web 框架分步入门";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-简介" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="[Flask] Web 框架分步入门" class="md-header__button md-logo" aria-label="[Flask] Web 框架分步入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            [Flask] Web 框架分步入门
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1. 简介
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-flask-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="[Flask] Web 框架分步入门" class="md-nav__button md-logo" aria-label="[Flask] Web 框架分步入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    [Flask] Web 框架分步入门
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-flask-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 简介
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="%E7%AE%80%E4%BB%8B.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-flask-在-web-应用程序中的角色" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1. Flask 在 Web 应用程序中的角色
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-所用工具" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2. 所用工具
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-运行案例研究" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3. 运行案例研究
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4. 示例
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-文档内容" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5. 文档内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%8A%A8%E4%BD%9C-%E8%B7%AF%E7%94%B1-%E5%93%8D%E5%BA%94.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 动作、路由、响应
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%8A%A8%E4%BD%9C%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. 动作模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%A7%86%E5%9B%BE%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 视图及其模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%9B%BD%E9%99%85%E5%8C%96.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 国际化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E6%95%B0%E6%8D%AE%E4%BD%9C%E7%94%A8%E5%9F%9F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 数据作用域
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%AF%B7%E6%B1%82%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 请求的生命周期
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E4%B8%8E%E6%8E%88%E6%9D%83.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 身份验证与授权
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 分层架构与数据访问
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E9%98%B6%E6%AE%B5%E6%80%A7%E5%B0%8F%E7%BB%93.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 阶段性小结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6-rdvmedecins-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 案例研究：RdvMedecins 应用程序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%BB%93%E8%AE%BA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E9%99%84%E5%BD%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 附录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="1-简介">1. <span style="color: #2e74b5">简介</span></h1>
+<p>本文档的 PDF 在 |<a href="https://1drv.ms/b/c/f53a919f43d27eb5/IQAyJmJHr3XbSqqiey51C_yjAU6rbhzgj2WYFVcLl6uTmk8?e=SlbAHb">这里</a>|。</p>
+<p>本文档的代码在 |<a href="https://1drv.ms/u/c/f53a919f43d27eb5/IQBLBHgoywWvTry_w_6TN9-DAef3U8FUxUXtVS2b5q04Eb0?e=C7OXvM">这里</a>|。</p>
+<p>本文档由 Anthropic 的 AI Claude 制作。它承接文档 <a href="https://stahe.github.io/zh-springmvc-sept-2026/"><u><span style="color: #0563c1">“[Spring MVC] Web 框架分步入门</span></u></a>”（2026 年），而该文档又承接了文档 <a href="https://stahe.github.io/zh-aspnetcoremvc-sept-2026/"><u><span style="color: #0563c1">“[ASP.NET Core MVC] </span></u><u><span style="color: #0563c1">Web 框架分步入门”</span></u></a> 和 <a href="https://stahe.github.io/zh-nestjs-html-sept-2026/"><u><span style="color: #0563c1">“[NestJS] Web 框架分步入门”</span></u></a>（2026 年）。本文档将 <em>[Spring MVC]</em> 课程适配到 <em>[Python]</em> 环境：</p>
+<ul>
+<li>将 <em>[Spring MVC]</em> 框架和 <em>[Java]</em> 语言替换为 <em>[Flask]</em> 3.1 框架和 <em>[Python]</em> 语言（3.12 或更高版本）；</li>
+<li>将 <em>[Thymeleaf]</em> 视图替换为 <em>[Jinja2]</em> 视图，即 <em>[Flask]</em> 的视图引擎；</li>
+<li>将 <em>[Bean Validation]</em> 验证替换为 <em>[Pydantic]</em> 库（用于动作参数）和 <em>[WTForms]</em> 库（用于 HTML 表单）；</li>
+<li><em>[Spring Security]</em> 被为此编写的几十行 <em>[Python]</em> 代码取代，它们依赖 <em>[PyJWT]</em> 库（JWT 令牌）和 <em>[bcrypt]</em> 库（密码哈希）；</li>
+<li>ORM 方面，<em>[Hibernate]</em> 和 <em>[Spring Data JPA]</em> 被 <em>[SQLAlchemy]</em> 取代，数据库仍然是 <em>[MySQL]</em>。</li>
+</ul>
+<p>本文档紧密遵循 <em>[Spring MVC]</em> 课程的结构：先是大量小项目，每个项目聚焦一个特定概念，然后是一个完整的案例研究——一个用于医疗诊所预约安排的 Web 应用程序，所有文件都有完整注释。示例的编号和涵盖的主题与 <em>[Spring MVC]</em> 和 <em>[ASP.NET Core MVC]</em> 课程相同：熟悉其中任何一门课程的读者可以逐个示例地比较这些框架。不过这并非必需：本文档自成体系，不要求读者事先了解 <em>[Spring]</em> 或 <em>[ASP.NET]</em>。唯一的先修知识是 Web 编程的基本概念（HTTP 协议、HTML 语言）以及 <em>[Python]</em> 语言（函数、类、字典、模块）。本课程作者的另一门早期课程 <a href="https://stahe.github.io/python-flask-sept-2020/"><u><span style="color: #0563c1">《通过示例学习 Python 语言和 Flask Web 框架》</span></u></a>（2020 年）介绍了 <em>[Python]</em> 语言本身，适合需要先学习它的读者。</p>
+<h2 id="11-flask-在-web-应用程序中的角色">1.1. <span style="color: #2e74b5">Flask 在 Web 应用程序中的角色</span></h2>
+<p>Web 应用程序通常按层构建，每一层只与相邻的层通信：</p>
+<p><img src="images/10000000000003D400000142262F8254.png" width="597" height="196" style="width:15.806cm;height:5.193cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003D400000142262F8254.png" /></p>
+<ul>
+<li>Web 层接收来自浏览器的 HTTP 请求，并向其返回 HTML 页面。这一层正是 <em>[Flask]</em> 帮助我们编写的；</li>
+<li>业务层包含应用程序的业务规则（例如“一名患者只能有一个即将到来的预约”）。它对 Web 一无所知：它同样可以服务于命令行应用程序；</li>
+<li>数据访问层（<em>[DAO]</em> 层，即 <em>[Data Access Object]</em>）负责读写数据库。我们将使用 <em>[SQLAlchemy]</em>，这是一个 ORM（<em>[Object Relational Mapper]</em>），它将表中的行映射为 <em>[Python]</em> 对象。</li>
+</ul>
+<p>Web 层本身遵循 <em>[MVC]</em> （<em>[Model – View – Controller]</em>）模型：</p>
+<ul>
+<li>控制器（C）是一组 <em>[Python]</em> 函数，称为 <strong>动作</strong>，每个动作处理一类请求（例如 <strong><em>[GET /schedule]</em></strong>）。动作读取请求参数，调用业务层，然后选择要显示的视图；</li>
+<li>模型（M）是动作传递给视图的数据集合；</li>
+<li>视图（V）是一个 <em>[Jinja2]</em> 文件（扩展名 <strong><em>[.html]</em></strong>）：一个包含 <strong><em>[{{ ... }}]</em></strong> 表达式和 <strong><em>[{% ... %}]</em></strong> 语句（<strong><em>[{% if %}]</em></strong>、<strong><em>[{% for %}]</em></strong>……）的 HTML 页面，<em>[Jinja2]</em> 引擎会用模型中的数据替换它们。</li>
+</ul>
+<p>关于术语的说明，以免混淆：<em>[Flask]</em> 文档把处理请求的函数称为 <strong>一个</strong> “视图函数”，把 <em>[Jinja2]</em> 文件称为“模板”。本文档采用 <em>[MVC]</em> 模型的术语，也采用 <em>[Spring MVC]</em> 和 <em>[ASP.NET Core MVC]</em> 课程的术语：处理请求的函数称为 <strong>动作</strong>，生成页面的 <em>[Jinja2]</em> 文件称为 <strong>视图</strong>，而术语 <strong>“模板”</strong> 指其他页面所继承的公共视图（第 4 章）。</p>
+<p>请求的处理遵循图中的编号步骤：</p>
+<ul>
+<li>1：浏览器发送一个请求，例如 HTTP 请求 <strong><em>[GET /schedule?doctorId=1&amp;day=2026-09-26]</em></strong>；</li>
+<li>2：Web 服务器接收请求并将其交给 <em>[Flask]</em> 应用程序。开发期间，该服务器是 <em>[Werkzeug]</em>，即 <em>[Flask]</em> 所基于的库；在生产环境中，则是 <em>[Waitress]</em> 或 <em>[Gunicorn]</em> 之类的服务器。<em>[Werkzeug]</em> 将请求的路径与应用程序的路由进行比较，并选择负责处理该请求的动作：这就是 <strong>路由</strong>。在到达动作之前，请求还可能经过对所有请求都会执行的函数（<strong><em>[before_request]</em></strong>），我们将在后续章节中探讨；</li>
+<li>3：动作向业务层请求所需的数据；必要时，业务层会联系 <em>[DAO]</em> 层，后者通过 SQL 查询数据库 <em>[MySQL]</em> ；</li>
+<li>4：动作构造视图的模型 M，并指示 <em>[Jinja2]</em> 引擎生成页面（函数 <strong><em>[render_template]</em></strong>）；</li>
+<li>5：视图生成的 HTML 页面就是动作的响应，由 <em>[Flask]</em> 返回给浏览器。</li>
+</ul>
+<p><em>[Flask]</em> 是 <em>[Python]</em> 世界中最常用的两大 Web 框架之一，另一个是 <em>[Django]</em>。它免费且开源，凡是 <em>[Python]</em> 能运行的地方都能运行（<em>[Windows]</em>、<em>[Linux]</em>、<em>[macOS]</em>）。它是一个 <strong>微框架</strong>：其核心刻意保持小巧（路由、请求和响应、会话、<em>[Jinja2]</em> 视图），其余一切（表单验证、数据库访问、身份验证等）都由开发者选择的库来处理。相比之下，<em>[Spring Boot]</em> 会自行配置一套协调一致的组件，<em>[Flask]</em> 则让开发者自行组装：应用程序更加透明，可以看到其内部发生的一切。这实际上正是它成为优秀学习工具的原因：几乎没有任何东西被隐藏。<em>[Flask]</em> 既可以创建向 <em>[JavaScript]</em> 客户端（<em>[Angular]</em>、<em>[React]</em>、<em>[Flutter]</em>……）返回 JSON 的服务器，也可以创建传统的 Web 应用程序，由服务器生成 HTML 页面，浏览器只负责显示。本文档探讨的是后一种用法。有两个概念——<em>[Python]</em>特有的——会在每一页反复出现：<strong>装饰器</strong> （<strong><em>[@app.get(&quot;/&quot;)]</em></strong>、<strong><em>[@app.before_request]</em></strong>……），它们把函数与某个角色关联起来；以及显式传递每个函数所需的对象，而 <em>[Spring]</em> 会自动注入这些对象。</p>
+<h2 id="12-所用工具">1.2. <span style="color: #2e74b5">所用工具</span></h2>
+<p>示例是使用以下工具编写和测试的（安装方法见附录）：</p>
+<ul>
+<li><em>[Python]</em> 3.13（任何 3.12 或更高版本均可）。<em>[Python]</em> 安装程序还提供 <strong><em>[pip]</em></strong> 工具（用于下载并安装库）以及 <strong><em>[venv]</em></strong> 模块（用于创建 <strong>虚拟环境</strong> （我们稍后会讨论它们是什么）；</li>
+<li>使用 <em>[Visual Studio Code]</em> 编辑器，以及 Microsoft 的 <em>[Python]</em> 扩展（它还会安装用于分析代码的 <em>[Pylance]</em> 扩展）；</li>
+<li>一款较新的浏览器（<em>[Chrome]</em>、<em>[Firefox]</em>、<em>[Edge]</em>）；</li>
+<li>命令行工具 <em>[curl]</em>，用于显示原始 HTTP 响应（<em>[Windows]</em> 10 和 11 已自带）；</li>
+<li>数据库管理系统 [MySQL] （或 <em>[MariaDB]</em>），例如 <em>[Laragon]</em> 在 <em>[Windows]</em> 下附带的那个，从数据访问一章开始使用，案例研究也会用到。</li>
+</ul>
+<p>与 <em>[JDK]</em> 不包含 <em>[Spring]</em> 不同，<em>[Python]</em> 自带非常全面的标准库；但 <em>[Flask]</em> 以及文档中的其他库并不包含在内：<strong><em>[pip]</em></strong> 会在安装时从 <em>[PyPI]</em> 仓库（<em>[Python Package Index]</em>）下载它们（因此当天必须连接互联网）。每个项目都在 <strong><em>[requirements.txt]</em></strong> 文件中描述其所用的库。下表列出了这些库及所用版本：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>库</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>作用</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>版本</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[Flask]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Web 框架：路由、请求、响应、会话、视图；它包含 <i>[Werkzeug] </i>（HTTP 请求、开发服务器）、<i>[Jinja2] </i>（视图）和 <i>[itsdangerous] </i>（签名）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">3.1.3</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[asgiref]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">异步动作（<i><b>[async def]</b></i>），由 <i><b>[Flask[async]] </b></i>安装（示例 03）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">3.12.1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[Pydantic]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">动作参数的绑定与验证（第 3 章）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">2.13.5</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[email-validator]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">电子邮件地址验证，供 <i>[Pydantic] </i>和 <i>[WTForms]</i> 使用</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">2.3.0</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[Flask-WTF]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">HTML（<i>[WTForms]</i>）表单和 CSRF 防护（第 4 章）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">1.3.0</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[Babel]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">按语言格式化日期和金额（第 3 章和第 4 章）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">2.18.0</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[PyJWT]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">JWT 令牌（第 8 章）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">2.15.0</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[bcrypt]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">密码哈希（第 8 章）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">5.0.0</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[SQLAlchemy]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">ORM，数据库访问（第 9 章）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">2.1.1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[PyMySQL]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">该 <i>[MySQL]</i> 驱动程序，用 <i>[Python] </i>编写（第 9 章）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">1.2.3</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[Waitress]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">生产环境 Web 服务器（案例研究）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">3.0.2</div></td></tr></table>
+
+<h2 id="13-运行案例研究">1.3. <span style="color: #2e74b5">运行案例研究</span></h2>
+<p><strong>审阅者的话</strong>：我建议读者按下文所述立即运行案例研究。当你完全理解这个预约应用程序的作用后，请让你喜欢的 AI 按如下方式修改应用程序：从现在起，每位医生都将能够：</p>
+<ul>
+<li>在两个日期之间设置自己的预约时段。这样他们就可以根据需要调整日程；</li>
+<li>为某一天从日历中移除某些时段——例如，因个人原因无法出诊时；</li>
+</ul>
+<p>这一修改并不简单，因为它涉及数据库结构的变更。请让 AI 为你提供新的应用程序代码和创建新数据库的 SQL 脚本。为此，你需要向它提供包含完整项目的 ZIP 文件以及旧数据库的 SQL 脚本。</p>
+<p>另外，我没有审阅由 <strong>Claude</strong> 创作的课程。它此前已经产出了完美的 [NestJS]、[ASP.NET Core MVC] 和 [Spring MVC] 课程，我就假定这一门也是如此。如果你在理解某些内容时遇到问题，解决办法始终相同：请你喜欢的 AI 解释你不理解的地方。<strong>Claude</strong> 就非常擅长这一点。你可能需要把不理解的示例“上传”给它。</p>
+<p><strong>说明结束</strong>。</p>
+<p>本文档末尾的案例研究是一个完整的应用程序。读者很可能想在深入细节之前先看看它的运行效果：下面介绍如何运行它。它位于 <strong><em>[rdvmedecins2-flask]</em></strong> 文件夹中，与 <strong><em>[examples]</em></strong> 文件夹并列：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>flask-sept-2026/
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>├── examples/
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>└── rdvmedecins2-flask/
+</code></pre></div></td></tr></table></div>
+<p>你必须已安装 <em>[Python]</em> （3.12 或更高版本）、<em>[Visual Studio Code]</em> 和 <em>[MySQL]</em> （见附录）。然后：</p>
+<ul>
+<li><strong>创建</strong> <strong><em>[dbrdvmedecins2]</em></strong> <strong>数据库：运行</strong> 脚本 <strong><em>[rdvmedecins2-flask/database/dbrdvmedecins2.sql]</em></strong>。如果使用 <em>[Laragon]</em>，打开 <em>[HeidiSQL]</em> 工具（Database 按钮），然后通过 File / Run SQL 菜单运行该脚本。在命令行中，则在 <strong><em>[rdvmedecins2-flask]</em></strong> 文件夹下执行：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>mysql -u root &lt; database/dbrdvmedecins2.sql
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>打开</strong> <strong><em>[rdvmedecins2-flask]</em></strong> <strong>文件夹</strong> （使用 <em>[Visual Studio Code]</em> ，File 菜单 / Open Folder），然后打开终端（Terminal 菜单 / New Terminal）；</li>
+<li><strong>创建</strong> 应用程序的 <strong>虚拟环境</strong> 并 <strong>激活它</strong>。虚拟环境是一个文件夹（此处为 <strong><em>[.venv]</em></strong>），其中包含特定项目所需的 <em>[Python]</em> 解释器副本和库——而且只包含这些库：每个项目都有自己的一套，版本适合自己，不会干扰计算机上的其他项目。在 <em>[Windows]</em> （命令提示符或 <em>[Visual Studio Code]</em> 的终端）中：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>python -m venv .venv
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>.venv\Scripts\activate
+</code></pre></div></td></tr></table></div>
+<p>在 <em>[Linux]</em> 和 <em>[macOS]</em> 下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>python3 -m venv .venv
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>source .venv/bin/activate
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>环境激活后，终端提示符以 <strong><em>[(.venv)]</em></strong> 开头，并且 <strong><em>[python]</em></strong> 和 <strong><em>[pip]</em></strong> 命令即为该环境中的命令。在 <em>[Windows]</em> 下，<em>[PowerShell]</em> 终端有时会拒绝运行激活脚本（消息：“Script execution is disabled on this system”）：命令 <strong><em>[Set-ExecutionPolicy -Scope CurrentUser RemoteSigned]</em></strong> 只需输入一次即可永久启用。<em>[Visual Studio Code]</em> 会检测该环境并提议将其用于项目：你必须接受（也可以通过 Python 命令 Select Interpreter 选择，Ctrl-Shift-P）；之后打开的终端会自动激活它；</li>
+<li><strong>安装</strong> 应用程序的 <strong>库</strong> 到虚拟环境中：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>pip install -r requirements.txt
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>检查数据库连接</strong>。应用程序连接到 <em>[MySQL]</em> ，位于 <strong><em>[localhost]</em></strong>，端口 3306，使用用户 <strong><em>[root]</em></strong> <strong>，不带密码</strong> （这是 <em>[Laragon]</em> 的默认设置）。如果你的 <strong><em>[root]</em></strong> 账户有密码，请在应用程序的 <strong><em>[config.py]</em></strong> 文件中，在 <strong><em>[DB_PASSWORD = &quot;&quot;]</em></strong> 这一行填写（例如 <strong><em>[DB_PASSWORD = &quot;myPassword&quot;]</em></strong>）。为避免把密码写入项目文件，也可以在环境变量 <strong><em>[FLASK_DB_PASSWORD]</em></strong> 中指定它，该变量优先于文件：<strong><em>[set FLASK_DB_PASSWORD=myPassword]</em></strong> 用于 <em>[Windows]</em> （命令提示符），<strong><em>[$env:FLASK_DB_PASSWORD=&quot;myPassword&quot;]</em></strong> 用于 <em>[PowerShell]</em>，<strong><em>[export FLASK_DB_PASSWORD=myPassword]</em></strong> 用于 <em>[Linux]</em> 和 <em>[macOS]</em>；</li>
+<li><strong>启动应用程序</strong> （在 <em>[Linux]</em> 和 <em>[macOS]</em> 下，使用 <strong><em>[python3]</em></strong> （如果 <strong><em>[python]</em></strong>  不存在）：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>python app.py
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>应用程序读取数据库，然后启动 <em>[Flask]</em> 开发服务器。控制台会显示发送给数据库的 SQL 命令（这里只列出主要的几条），随后是服务器消息：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>... INFO sqlalchemy.engine.Engine BEGIN (implicit)
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>... INFO sqlalchemy.engine.Engine SELECT doctors.title, doctors.last_name, doctors.first_name, ... FROM doctors LEFT OUTER JOIN users AS users_1 ON users_1.id = doctors.user ORDER BY doctors.last_name, doctors.first_name
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>... INFO sqlalchemy.engine.Engine ROLLBACK
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>... INFO sqlalchemy.engine.Engine BEGIN (implicit)
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>... INFO sqlalchemy.engine.Engine SELECT clients.title, clients.last_name, clients.first_name, ... FROM clients LEFT OUTER JOIN users AS users_1 ON users_1.id = clients.user ORDER BY clients.last_name, clients.first_name
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>... INFO sqlalchemy.engine.Engine ROLLBACK
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a> * Serving Flask app 'rdvmedecins'
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a> * Debug mode: on
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a> * Running on http://127.0.0.1:8081
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>Press CTRL+C to quit
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a> * Restarting with stat
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a> ... (the same SQL commands)
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a> * Debugger is active!
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a> * Debugger PIN: 332-612-699
+</code></pre></div></td></tr></table></div>
+<p>每条 <em>[SQLAlchemy]</em> 日志都以日期和时间开头（此处用 <strong><em>[...]</em></strong> 代替）。它表明应用程序已读取医生和客户的列表（两条 SQL 请求），服务器正在地址 <strong><em>[127.0.0.1]</em></strong>（即 <strong><em>[localhost]</em></strong>）的 8081 端口上监听，并且运行在 <strong>调试</strong>模式下：每当某个 <em>[Python]</em> 文件被修改时，应用程序会自动重启（<strong><em>[Restarting with stat]</em></strong>：监视文件的进程会重启应用程序，应用程序随即重新读取数据库），发生意外错误时会显示调试页面（“PIN”用于保护该页面中的控制台）。警告提醒你：该服务器仅用于开发，而非生产环境（案例研究会说明如何使用生产服务器）；</p>
+<ul>
+<li><strong>在浏览器中打开 URL</strong> <strong><em>[http://localhost:8081]</em></strong> ：</li>
+</ul>
+<p><img src="images/10000000000003EA000003B5C946CACA.png" width="605" height="573" style="width:16cm;height:15.154cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003EA000003B5C946CACA.png" /></p>
+<ul>
+<li>使用演示账户之一登录，每个账户的密码与用户名相同：<strong><em>[admin]</em></strong> （管理员）、<strong><em>[pelissier]</em></strong>、<strong><em>[tatou]</em></strong>、<strong><em>[dupont]</em></strong> （医生）、<strong><em>[martin]</em></strong>、<strong><em>[durand]</em></strong>、<strong><em>[bistrou]</em></strong>、<strong><em>[german]</em></strong> （患者）。你还必须输入图片中的字符，大小写均可。</li>
+</ul>
+<p>启动时，应用程序会读取数据库：如果 <em>[MySQL]</em> 无法访问，它会立即停止，控制台会在一长串错误消息的末尾显示原因（位于“Background on this error”这一行之前）。如果消息是 <strong><em>[Can&#x27;t connect to MySQL server on &#x27;localhost&#x27; ([Errno 111] Connection refused)]</em></strong> （或 <strong><em>[[WinError 10061]]</em></strong> ，在 <em>[Windows]</em> 下），则表示 <em>[MySQL]</em> 尚未启动；如果是 <strong><em>[Access denied for user &#x27;root&#x27;@&#x27;localhost&#x27;]</em></strong>，则表示密码错误；如果是 <strong><em>[Unknown database &#x27;dbrdvmedecins2&#x27;]</em></strong>，则表示尚未执行 SQL 脚本；如果是 <strong><em>[ModuleNotFoundError: No module named &#x27;flask&#x27;]</em></strong>，则表示虚拟环境未启用（或库尚未安装到其中）；如果是 <strong><em>[Address already in use]</em></strong> （或 <strong><em>[Port 8081 is in use by another program]</em></strong>），则表示 8081 端口已被占用（例如被应用程序的 <em>[Spring MVC]</em> 版本占用）。应用程序的 <strong><em>[README.md]</em></strong> 文件描述了其他情形。在终端中使用 <strong><em>[Ctrl-C]</em></strong> 停止应用程序。</p>
+<p>文档末尾的案例研究演示了如何使用该应用程序，然后逐一讲解它的每个文件。</p>
+<h2 id="14-示例">1.4. <span style="color: #2e74b5">示例</span></h2>
+<p>示例保存在 <strong><em>[examples]</em></strong> 文件夹中，每个示例对应一个子文件夹：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span>
+<span class="normal"><a href="#__codelineno-7-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>examples/
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>├── 01-structure/
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>├── 02-routing/
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>├── ...
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>├── 28-layers/
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>├── common/
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>│   └── bootstrap/
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>└── requirements.txt
+</code></pre></div></td></tr></table></div>
+<p>每个示例都是一个可独立运行的小型（<em>[Flask]</em>）应用程序。所有示例使用相同的库，它们在文件 <strong><em>[examples/requirements.txt]</em></strong> 中描述：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a># 示例所用的库：pip install -r requirements.txt
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a># （编写和测试示例时所用的版本）
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>Flask[async]==3.1.3
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>Flask-WTF==1.3.0
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>email-validator==2.3.0
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a>pydantic==2.13.5
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a>Babel==2.18.0
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a>PyJWT==2.15.0
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a>bcrypt==5.0.0
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a>SQLAlchemy==2.1.1
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a>PyMySQL[rsa]==1.2.3
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 3 行：<em>[Flask]</em>，以及编写异步动作所需的内容（<strong>附加的</strong> <strong><em>[[async]]</em></strong>，它会添加 <em>[asgiref]</em> 库；参见示例 03）；</li>
+<li>第 4–7 行：表单、验证和按语言的格式化；</li>
+<li>第 8–9 行：身份验证（第 8 章）；</li>
+<li>第 10–11 行：数据库访问（第 9 章）。<strong><em>[[rsa]]</em></strong> 扩展使 <em>[PyMySQL]</em> 增加了 <em>[cryptography]</em> 库，连接使用受密码保护账户的 <em>[MySQL]</em> 8 服务器时需要它。</li>
+</ul>
+<p>每行的形式为 <strong><em>[name==version]</em></strong>：<strong><em>[==]</em></strong> 运算符要求 <strong>恰好</strong> 是这个版本，即测试这些示例时所用的版本。也可以不那么严格（<strong><em>[Flask&gt;=3.1]</em></strong>：3.1 或更高版本）；但是，库的未来版本可能会改变其行为，而课程必须能完全按所写内容复现。以 <strong><em>[#]</em></strong> 开头的行是注释。</p>
+<p>要运行这些示例，首先一次性在 <strong><em>[examples]</em></strong> 文件夹中为示例创建虚拟环境（详见案例研究）：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>python -m venv .venv
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>.venv\Scripts\activate
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>pip install -r requirements.txt
+</code></pre></div></td></tr></table></div>
+<p>（<strong><em>[source .venv/bin/activate]</em></strong> 用于 <em>[Linux]</em> 和 <em>[macOS]</em>）。<strong><em>[common/bootstrap]</em></strong> 文件夹包含 CSS 和 <em>[Bootstrap]</em> 框架，由需要排版页面的示例共享（从示例 15 开始）。</p>
+<p>几乎所有示例的结构都相同。例如示例 13 的结构：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>13-first-view/
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>├── controllers/
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>│   ├── __init__.py
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>│   └── views.py
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>├── models/
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a>│   ├── __init__.py
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a>│   └── page.py
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a>├── templates/
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a>│   └── views/
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a>│       ├── index.html
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a>│       └── unknown.html
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a>└── app.py
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong><em>[app.py]</em></strong>：应用程序的启动文件，即被执行的文件；它构建应用程序并启动服务器（参见示例 01）；</li>
+<li><strong><em>[controllers]</em></strong>：控制器，即包含动作的文件。这是一个 <em>[Python]</em> <strong>包</strong>：一个包含模块（<strong><em>[.py]</em></strong> 文件）的文件夹，这些模块可以被导入（<strong><em>[from controllers.views import views]</em></strong>）。文件 <strong><em>[__init__.py]</em></strong>在这里是空的，它使该文件夹成为一个包（首次导入该包时会执行它）；</li>
+<li><strong><em>[models]</em></strong>：描述模型（动作和视图的模型）的类；</li>
+<li><strong><em>[templates]</em></strong>：<em>[Jinja2]</em> 视图（从第 4 章开始）。<em>[Flask]</em> 会在应用程序文件旁边的这个文件夹中查找它们；</li>
+<li><strong><em>[static]</em></strong> （从示例 15 开始）：原样发送给浏览器的文件（样式表、图片、<em>[JavaScript]</em> 脚本）。</li>
+</ul>
+<p>要运行示例，请在其文件夹中打开终端（在 <em>[Visual Studio Code]</em> 中：右键单击示例文件夹，然后选择“Open in the built-in terminal”），如果示例的虚拟环境尚未激活，则先激活它（<strong><em>[..\.venv\Scripts\activate]</em></strong> 用于 <em>[Windows]</em>，<strong><em>[source ../.venv/bin/activate]</em></strong> 用于 <em>[Linux]，</em>和 <em>[macOS]</em>：环境位于 <strong><em>[examples]</em></strong> 文件夹中，它是示例文件夹的父文件夹），然后输入：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>python app.py
+</code></pre></div></td></tr></table></div>
+<p>所有示例都监听 5000 端口：同一时间只能运行一个。在终端中输入 <strong><em>[Ctrl-C]</em></strong> 可停止服务器。在 <em>[macOS]</em> 上，5000 端口有时已被系统的“AirPlay Receiver”占用（消息 <strong><em>[Address already in use]</em></strong>）：可以在 System Settings / General / AirDrop and Handoff 中将其禁用，或者在示例的 <strong><em>[app.py]</em></strong> 文件中更改端口（<strong><em>[port=5001]</em></strong>）。</p>
+<p>当你打开 <strong><em>[examples]</em></strong> 文件夹时（在 <em>[Visual Studio Code]</em> 中），<em>[Python]</em> 扩展会建议使用 <strong><em>[.venv]</em></strong> 环境：这样每个文件都能享受语法高亮、代码补全和错误提示。每个示例都从自己的文件夹启动；因此示例中的导入（<strong><em>[from controllers.views import views]</em></strong>）都从该文件夹开始。<em>[Pylance]</em>会分析打开的文件夹（<strong><em>[examples]</em></strong>）中的代码，因此可能把这些导入标示为缺失：这对执行没有影响。要让 <em>[Pylance]</em> 找到它们，只需直接打开示例自身的文件夹（File 菜单 / Open Folder）。最后，所有示例都以 <strong>调试</strong> 模式运行（参见示例 01）：只要其中某个 <em>[Python]</em> 文件被修改并保存，正在运行的应用程序就会在大约一秒内自动重启。</p>
+<p>使用 <em>[Bootstrap]</em> 的示例在 <strong><em>[common/bootstrap]</em></strong> 文件夹中找到它，而不是在自己的文件夹中：这样可以确保该文件只有一份副本。这些示例都通过 URL <strong><em>[/bootstrap/...]</em></strong> 来调用它，方法是在 <strong><em>[app.py]</em></strong> 文件中写几行代码。例如 <strong><em>[15-layout/app.py]</em></strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span>
+<span class="normal"><a href="#__codelineno-12-18">18</a></span>
+<span class="normal"><a href="#__codelineno-12-19">19</a></span>
+<span class="normal"><a href="#__codelineno-12-20">20</a></span>
+<span class="normal"><a href="#__codelineno-12-21">21</a></span>
+<span class="normal"><a href="#__codelineno-12-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># app.py：示例 15 的应用</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Blueprint</span><span class="p">,</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">controllers.pages</span><span class="w"> </span><span class="kn">import</span> <span class="n">pages</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="c1"># Bootstrap，由各示例共享：examples/common/bootstrap 文件夹，</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="c1"># 从本文件所在位置定位（而不是从当前文件夹）</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="n">BOOTSTRAP</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"common"</span> <span class="o">/</span> <span class="s2">"bootstrap"</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_app</span><span class="p">():</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a>    <span class="n">app</span><span class="o">.</span><span class="n">jinja_env</span><span class="o">.</span><span class="n">trim_blocks</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17"></a>    <span class="n">app</span><span class="o">.</span><span class="n">jinja_env</span><span class="o">.</span><span class="n">lstrip_blocks</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18"></a>    <span class="c1"># 一个没有路由、只提供静态文件的蓝图：</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19"></a>    <span class="c1"># BOOTSTRAP 文件夹，位于 /bootstrap/... URL 下</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20"></a>    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">Blueprint</span><span class="p">(</span><span class="s2">"bootstrap"</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span> <span class="n">static_folder</span><span class="o">=</span><span class="n">BOOTSTRAP</span><span class="p">,</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21"></a>                                     <span class="n">static_url_path</span><span class="o">=</span><span class="s2">"/bootstrap"</span><span class="p">))</span>
+<a id="__codelineno-12-22" name="__codelineno-12-22"></a>    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 11 行：文件夹 <strong><em>[common/bootstrap]</em></strong> 的路径。<strong><em>[__file__]</em></strong> 是当前正在运行的文件（<strong><em>[app.py]</em></strong>）的路径；<strong><em>[Path(...).resolve()]</em></strong> 将其变为绝对路径；<strong><em>[.parent]</em></strong> 指包含它的文件夹（<strong><em>[15-layout]</em></strong>），而 <strong><em>[.parent.parent]</em></strong> 指父文件夹（<strong><em>[examples]</em></strong>）。<strong><em>[Path]</em></strong> 对象的运算符 <strong><em>[/]</em></strong> 会向路径添加一个元素，并使用正确的分隔符（<strong><em>[\]</em></strong> 在 <em>[Windows]</em> 下，<strong><em>[/]</em></strong> 在其他系统上）。因此该路径不依赖于当前文件夹：示例能找到 <em>[Bootstrap]</em> ，无论从何处启动；</li>
+<li>第 20–21 行：<strong>蓝图</strong> 是存储在应用程序中的一组路由（参见示例 02）。该蓝图没有路由：它仅用于发布 <strong><em>[common/bootstrap]</em></strong> 文件夹（参数 <strong><em>[static_folder]</em></strong>），发布在 URL <strong><em>[/bootstrap]</em></strong> 下（参数 <strong><em>[static_url_path]</em></strong>）。因此页面可以使用样式表 <strong><em>[/bootstrap/css/bootstrap.min.css]</em></strong>。</li>
+</ul>
+<p>该文件中的其他行将在示例 15 中讲解。</p>
+<h2 id="15-文档内容">1.5. <span style="color: #2e74b5">文档内容</span></h2>
+<p>本文档的结构如下：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>章</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>内容</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>示例</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">动作、路由、响应</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">从请求到动作：路由、蓝图、响应、重定向、共享服务</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">01 至 06</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">动作模型</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">请求参数：绑定、转换、使用 <i>[Pydantic]</i> 验证、POST 表单</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">07 至 12</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">视图及其模型</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>[Jinja2]</i>、模板、宏、<i>[WTForms]</i> 表单、验证、PRG、CSRF 防护</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">13 至 21</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">国际化</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">法语和英语双语应用程序</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">22</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">数据作用域</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">应用程序、请求、会话、客户端</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">23</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">请求的生命周期</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">WSGI 中间件、<i><b>[before_request]</b></i>、<i><b>[after_request]</b></i>、<i><b>[teardown_request]</b></i>、转换器、错误处理程序</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">24</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">身份验证与授权</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Cookie 中的 JWT、装饰器、角色、验证码(CAPTCHA)、尝试次数限制</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">25–27</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">分层架构</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Web / 业务逻辑 / DAO，使用 <i>[SQLAlchemy] </i>和 <i>[MySQL]</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">28</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">案例研究</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">RdvMedecins 应用程序，逐文件讲解</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">-</div></td></tr></table>
+
+<p>每个示例只引入少量新概念，各章环环相扣：最好按顺序阅读。而案例研究则综合运用了前面各章的 <strong>全部</strong> 概念：只要相关，其说明就会引用该概念首次出现的示例。附录介绍了如何安装工具：<em>[Python]</em>、<em>[Visual Studio Code]</em> 及其 <em>[Python]</em> 扩展、<em>[MySQL]</em> （配合 <em>[Laragon]</em>）以及 <em>[curl]</em>。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 Anthropic 的 AI <strong>Claude</strong> 应 <strong>Serge Tahé</strong> 的请求编写，根据
+        <em>知识共享署名 – 禁止商业使用 –
+        共享 3.0 未本地化版</em>的条款向公众开放。
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

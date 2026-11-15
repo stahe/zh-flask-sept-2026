@@ -1,0 +1,1489 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="[Flask] Web 框架分步入门">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-flask-sept-2026/%E8%AF%B7%E6%B1%82%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html">
+      
+      
+        <link rel="prev" href="%E6%95%B0%E6%8D%AE%E4%BD%9C%E7%94%A8%E5%9F%9F.html">
+      
+      
+        <link rel="next" href="%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E4%B8%8E%E6%8E%88%E6%9D%83.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>7. 请求的生命周期 - [Flask] Web 框架分步入门</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "[Flask] Web 框架分步入门";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#7-请求的生命周期" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="[Flask] Web 框架分步入门" class="md-header__button md-logo" aria-label="[Flask] Web 框架分步入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            [Flask] Web 框架分步入门
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              7. 请求的生命周期
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-flask-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="[Flask] Web 框架分步入门" class="md-nav__button md-logo" aria-label="[Flask] Web 框架分步入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    [Flask] Web 框架分步入门
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-flask-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AE%80%E4%BB%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%8A%A8%E4%BD%9C-%E8%B7%AF%E7%94%B1-%E5%93%8D%E5%BA%94.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 动作、路由、响应
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%8A%A8%E4%BD%9C%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. 动作模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%A7%86%E5%9B%BE%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 视图及其模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%9B%BD%E9%99%85%E5%8C%96.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 国际化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E6%95%B0%E6%8D%AE%E4%BD%9C%E7%94%A8%E5%9F%9F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 数据作用域
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 请求的生命周期
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="%E8%AF%B7%E6%B1%82%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 请求的生命周期
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#71-示例-24处理请求所涉及的步骤" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. 示例 24：处理请求所涉及的步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1. 示例 24：处理请求所涉及的步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#711-wsgi-中间件filtersloggerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1.1. WSGI 中间件：filters/logger.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#712-转换器filtersintegerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1.2. 转换器：filters/integer.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#713-标记的动作filtersmarkspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1.3. 标记的动作：filters/marks.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#714-钩子filtershookspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1.4. 钩子：filters/hooks.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#715-错误处理filterserrorspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1.5. 错误处理：filters/errors.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#716-控制器和错误页面" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1.6. 控制器和错误页面
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#717-配置apppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1.7. 配置：app.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#718-执行" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1.8. 执行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E4%B8%8E%E6%8E%88%E6%9D%83.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 身份验证与授权
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 分层架构与数据访问
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E9%98%B6%E6%AE%B5%E6%80%A7%E5%B0%8F%E7%BB%93.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 阶段性小结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6-rdvmedecins-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 案例研究：RdvMedecins 应用程序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%BB%93%E8%AE%BA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E9%99%84%E5%BD%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 附录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="7-请求的生命周期">7. <span style="color: #2e74b5">请求的生命周期</span></h1>
+<p>从请求到达到响应发出之间，<em>[Flask]</em> 要经历几个步骤，应用程序可以在每一步进行干预。其中有几个我们已经遇到过：路径变量转换器（示例 02 和 12）、<strong><em>[before_request]</em></strong> 函数（示例 16、22 和 23）以及错误处理器（示例 08 和 12）。本章把它们整合到一个示例中，该示例在每个步骤向控制台输出一条消息，以便你观察它们的顺序：</p>
+<p><img src="images/10000000000003E80000017CC3E6CEC3.png" width="605" height="230" style="width:16cm;height:6.08cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003E80000017CC3E6CEC3.png" /></p>
+<ul>
+<li><strong>1 和 8. WSGI 中间件</strong>。<em>[WSGI]</em> （*Web Server Gateway Interface*）是把用 <em>[Python]</em> 编写的 Web 服务器与应用程序连接起来的标准。从服务器的角度看，<em>[Flask]</em> 应用程序只是一个可调用对象，它接收请求的描述并生成响应。<strong>中间件</strong> 是类似的一种对象，它<strong>包裹在</strong>应用程序外面：它在请求到达 <em>[Flask]</em> 之前拦截请求，并在之后拦截响应。它相当于 <em>[Java]</em> 的 Servlet 过滤器；</li>
+<li><strong>2. 路由</strong>。<em>[Flask]</em> 查找与 URL 对应的路由，路由转换器转换路径变量；</li>
+<li><strong>3 和 4.</strong> <strong><em>[before_request]</em></strong> <strong>函数</strong>，按其注册的顺序执行。如果其中任何一个返回了响应（或抛出了异常），处理就在此停止：不会调用动作。我们就在这里验证用户是否已登录（下一章）；</li>
+<li><strong>5. 动作</strong>，以及它所生成的视图；</li>
+<li><strong>6.</strong> <strong><em>[after_request]</em></strong> <strong>函数</strong>接收响应，可以修改它（添加头部或 Cookie），并且必须返回它。它们按注册顺序的<strong>相反</strong>顺序执行；</li>
+<li><strong>7.</strong> <strong><em>[teardown_request]</em></strong> <strong>函数</strong>，它们<strong>总是</strong>在最后执行，即使异常中断了处理。它们不能再修改响应；其用途是释放资源（例如关闭数据库连接）；</li>
+<li><strong>x. 错误处理器</strong> （<strong><em>[errorhandler]</em></strong>）：由 <strong><em>[before_request]</em></strong> 函数、动作或视图抛出的异常，会被交给为其类注册的处理器，由它生成错误响应。然后，这个响应会像普通响应一样经过 <strong><em>[after_request]</em></strong> 函数。</li>
+</ul>
+<p>它们相当于 <em>[Spring MVC]</em> 的拦截器和 <em>[ASP.NET Core MVC]</em> 的动作过滤器。函数 <strong><em>[before_request]</em></strong>、<strong><em>[after_request]、</em></strong>和 <strong><em>[teardown_request]</em></strong> 通常被称为<strong>钩子</strong>。</p>
+<h2 id="71-示例-24处理请求所涉及的步骤">7.1. <span style="color: #2e74b5">示例 24：处理请求所涉及的步骤</span></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>24-lifecycle/
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>├── app.py
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>├── controllers/
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>│   └── calc.py
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>├── filters/
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>│   ├── errors.py
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>│   ├── hooks.py
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>│   ├── integer.py
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>│   ├── logger.py
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>│   └── marks.py
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>└── templates/
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>    ├── calc/
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>    │   └── result.html
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>    ├── error.html
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>    └── layout.html
+</code></pre></div></td></tr></table></div>
+<p>该应用程序只有一个动作，用于计算整数的平方：<strong><em>[/square/7]</em></strong>。根据 URL 的不同，它会成功，或以各种方式失败。</p>
+<h3 id="711-wsgi-中间件filtersloggerpy">7.1.1. <span style="color: #1f4d78">WSGI 中间件：filters/logger.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># filters/logger.py：一个 WSGI 中间件。WSGI 是连接</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="c1"># Python Web 服务器与应用的标准：应用是一个可调用对象</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="c1"># app(environ, start_response)。中间件就是这样一个对象，它包装</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1"># 应用：在 Flask 之前看到每个请求经过，在 Flask 之后看到响应</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">LoggerMiddleware</span><span class="p">:</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">application</span><span class="p">):</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">application</span> <span class="o">=</span> <span class="n">application</span>  <span class="c1"># 被包装的应用（Flask）</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>        <span class="c1"># environ：描述请求的字典（方法、路径……）</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>        <span class="n">request</span> <span class="o">=</span> <span class="n">environ</span><span class="p">[</span><span class="s2">"REQUEST_METHOD"</span><span class="p">]</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">environ</span><span class="p">[</span><span class="s2">"PATH_INFO"</span><span class="p">]</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>        <span class="k">if</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"QUERY_STRING"</span><span class="p">):</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a>            <span class="n">request</span> <span class="o">+=</span> <span class="s2">"?"</span> <span class="o">+</span> <span class="n">environ</span><span class="p">[</span><span class="s2">"QUERY_STRING"</span><span class="p">]</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a>        <span class="nb">print</span><span class="p">()</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">"---"</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">"1. middleware (before)"</span><span class="p">)</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a>        <span class="n">status</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a>        <span class="c1"># start_response：Flask 通过它宣告响应的状态码和</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a>        <span class="c1"># 头部；我们包装它，以便在途中记下状态码</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">spy_start_response</span><span class="p">(</span><span class="n">status_line</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a>            <span class="n">status</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status_line</span><span class="p">)</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a>            <span class="k">return</span> <span class="n">start_response</span><span class="p">(</span><span class="n">status_line</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">exc_info</span><span class="p">)</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a>        <span class="c1"># 其余的一切：Flask、动作、视图</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">spy_start_response</span><span class="p">)</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"8. middleware (after: code </span><span class="si">{</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'?'</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a>        <span class="k">return</span> <span class="n">response</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 7 行：中间件接收它所包裹的应用程序；</li>
+<li>第 10 行：特殊方法 <strong><em>[__call__]</em></strong> 使对象成为<strong>可调用的</strong>：<strong><em>[middleware(environ, start_response)]</em></strong> 执行的就是这个方法。这是 <em>[WSGI]</em> 规定的签名：<strong><em>[environ]</em></strong> 是描述请求的字典（方法在 <strong><em>[REQUEST_METHOD]</em></strong> 中，路径在 <strong><em>[PATH_INFO]</em></strong> 中，参数在 <strong><em>[QUERY_STRING]</em></strong> 中，还有头部等）；<strong><em>[start_response]</em></strong> 是服务器提供的函数，应用程序调用它来报告响应码和头部；</li>
+<li>第 12–17 行：中间件显示请求。这是第 1 条消息：此时 <em>[Flask]</em> 中还没有发生任何事情；</li>
+<li>第 22–24 行：为了确定响应码，中间件向应用程序传入它自己的一个函数——代替 <strong><em>[start_response]</em></strong>——该函数在响应码经过时记录下来，然后调用真正的函数。这是一个<strong>内部函数</strong> （定义在另一个函数之内）：它可以访问包含它的函数的变量，这里是列表 <strong><em>[status]</em></strong>；</li>
+<li>第 27 行：对被包裹应用程序的调用：其余的处理都发生在这次调用之中；</li>
+<li>第 28 行：第 8 条消息，在 <em>[Flask]</em> 处理完毕时输出。</li>
+</ul>
+<p>中间件组件工作在 <em>[WSGI]</em> 层面：它不知道 <strong><em>[request]</em></strong>、<strong><em>[g]</em></strong> 或 <em>[Flask]</em> 的路由。它用于适用于所有请求的处理，而不论是哪个应用程序：日志记录、压缩、处理代理等。<em>[Werkzeug]</em> 提供了其中的一些，例如 <strong><em>[ProxyFix]</em></strong>，当应用程序位于代理服务器之后时，它会修正客户端的地址（案例研究在讨论客户端 IP 地址时会谈到这一点）。</p>
+<h3 id="712-转换器filtersintegerpy">7.1.2. <span style="color: #1f4d78">转换器：filters/integer.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># filters/integer.py：路径变量 &lt;integer:n&gt;，转换为整数，如果</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1"># 不是整数则为 None（此时由动作来决定）</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.routing</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseConverter</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">IntegerConverter</span><span class="p">(</span><span class="n">BaseConverter</span><span class="p">):</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>    <span class="c1"># 任意一段路径（不含斜杠）</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>    <span class="n">regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"[^/]+"</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'2. conversion of the parameter (received value: "</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">")'</span><span class="p">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a>            <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+<p>一个转换器（示例 12），它接受路径的任意一段（<strong><em>[[^/]+]</em></strong>：一个或多个不是 <strong><em>[/]</em></strong> 的字符），并对其整体进行转换，如果它不是有效的路径段，则转换为 <strong><em>[None]</em></strong> 。与 <strong><em>[&lt;int:n&gt;]</em></strong> 不同（对于 <strong><em>[/square/abc]</em></strong>，它会返回 404 页面），这里由动作来决定结果。它显示第 2 条消息。</p>
+<h3 id="713-标记的动作filtersmarkspy">7.1.3. <span style="color: #1f4d78">标记的动作：filters/marks.py</span></h3>
+<p><strong><em>[before_request]</em></strong> 函数会在<strong>所有</strong>动作之前运行。通常，某个处理只适用于特定的动作。指定这些动作的简单方法是对它们进行<strong>标记</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># filters/marks.py：两个标记动作的装饰器，不改变</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="c1"># 动作的执行：它们给动作添加一个属性，filters/hooks.py 中的</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="c1"># 函数会查找该属性</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">block</span><span class="p">(</span><span class="n">action</span><span class="p">):</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>    <span class="n">action</span><span class="o">.</span><span class="n">block</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>    <span class="k">return</span> <span class="n">action</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">timing</span><span class="p">(</span><span class="n">action</span><span class="p">):</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="n">action</span><span class="o">.</span><span class="n">timing</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>    <span class="k">return</span> <span class="n">action</span>
+</code></pre></div></td></tr></table></div>
+<p>这两个装饰器不会改变动作本身：它们只是给动作添加一个属性（在 <em>[Python]</em> 中，函数是对象，可以为其添加属性），而动作保持不变。<strong><em>[before_request]</em></strong> 函数将在请求所指向的动作上查找这些标记。</p>
+<h3 id="714-钩子filtershookspy">7.1.4. <span style="color: #1f4d78">钩子：filters/hooks.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span>
+<span class="normal"><a href="#__codelineno-4-34">34</a></span>
+<span class="normal"><a href="#__codelineno-4-35">35</a></span>
+<span class="normal"><a href="#__codelineno-4-36">36</a></span>
+<span class="normal"><a href="#__codelineno-4-37">37</a></span>
+<span class="normal"><a href="#__codelineno-4-38">38</a></span>
+<span class="normal"><a href="#__codelineno-4-39">39</a></span>
+<span class="normal"><a href="#__codelineno-4-40">40</a></span>
+<span class="normal"><a href="#__codelineno-4-41">41</a></span>
+<span class="normal"><a href="#__codelineno-4-42">42</a></span>
+<span class="normal"><a href="#__codelineno-4-43">43</a></span>
+<span class="normal"><a href="#__codelineno-4-44">44</a></span>
+<span class="normal"><a href="#__codelineno-4-45">45</a></span>
+<span class="normal"><a href="#__codelineno-4-46">46</a></span>
+<span class="normal"><a href="#__codelineno-4-47">47</a></span>
+<span class="normal"><a href="#__codelineno-4-48">48</a></span>
+<span class="normal"><a href="#__codelineno-4-49">49</a></span>
+<span class="normal"><a href="#__codelineno-4-50">50</a></span>
+<span class="normal"><a href="#__codelineno-4-51">51</a></span>
+<span class="normal"><a href="#__codelineno-4-52">52</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1"># filters/hooks.py：在每个动作之前和之后执行的函数</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">abort</span><span class="p">,</span> <span class="n">current_app</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">request</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="c1"># 将处理当前请求的动作（没有路由匹配时为 None）。</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="c1"># request.endpoint：动作的名称（"calc.square"）；view_functions：</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="c1"># 应用的 名称 -&gt; 函数 字典</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">targeted_action</span><span class="p">():</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="k">return</span> <span class="n">current_app</span><span class="o">.</span><span class="n">view_functions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="c1"># 目标动作上是否带有 [name] 标记（见 marks.py）？</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">marked</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a>    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">targeted_action</span><span class="p">(),</span> <span class="n">name</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a>    <span class="c1"># before_request：在动作之前。如果函数返回响应（或抛出</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22"></a>    <span class="c1"># 异常），处理就此停止：动作不会被调用</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23"></a>    <span class="nd">@app</span><span class="o">.</span><span class="n">before_request</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">block</span><span class="p">():</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25"></a>        <span class="k">if</span> <span class="n">marked</span><span class="p">(</span><span class="s2">"block"</span><span class="p">):</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"3. before_request Block (targeted action: </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27"></a>            <span class="k">if</span> <span class="s2">"block"</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28"></a>                <span class="n">abort</span><span class="p">(</span><span class="mi">403</span><span class="p">)</span>  <span class="c1"># 一个 403 错误响应（拒绝访问）</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29"></a>
+<a id="__codelineno-4-30" name="__codelineno-4-30"></a>    <span class="nd">@app</span><span class="o">.</span><span class="n">before_request</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">timing_start</span><span class="p">():</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32"></a>        <span class="k">if</span> <span class="n">marked</span><span class="p">(</span><span class="s2">"timing"</span><span class="p">):</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33"></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">"4. before_request Timing (before)"</span><span class="p">)</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34"></a>            <span class="c1"># 开始时间，存放在 g 中（请求作用域）</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35"></a>            <span class="n">g</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36"></a>
+<a id="__codelineno-4-37" name="__codelineno-4-37"></a>    <span class="c1"># after_request：在动作（以及它构建的视图）之后，带着</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38"></a>    <span class="c1"># 响应，函数可以修改它；必须将其返回</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39"></a>    <span class="nd">@app</span><span class="o">.</span><span class="n">after_request</span>
+<a id="__codelineno-4-40" name="__codelineno-4-40"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">timing_after</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41"></a>        <span class="k">if</span> <span class="n">marked</span><span class="p">(</span><span class="s2">"timing"</span><span class="p">):</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"6. after_request Timing (code </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43"></a>        <span class="k">return</span> <span class="n">response</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44"></a>
+<a id="__codelineno-4-45" name="__codelineno-4-45"></a>    <span class="c1"># teardown_request：在最后，总是被调用，带有可能出现的</span>
+<a id="__codelineno-4-46" name="__codelineno-4-46"></a>    <span class="c1"># （未处理的）异常；它不能再改变响应</span>
+<a id="__codelineno-4-47" name="__codelineno-4-47"></a>    <span class="nd">@app</span><span class="o">.</span><span class="n">teardown_request</span>
+<a id="__codelineno-4-48" name="__codelineno-4-48"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">timing_end</span><span class="p">(</span><span class="n">exception</span><span class="p">):</span>
+<a id="__codelineno-4-49" name="__codelineno-4-49"></a>        <span class="k">if</span> <span class="s2">"start"</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+<a id="__codelineno-4-50" name="__codelineno-4-50"></a>            <span class="n">ms</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">g</span><span class="o">.</span><span class="n">start</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+<a id="__codelineno-4-51" name="__codelineno-4-51"></a>            <span class="n">outcome</span> <span class="o">=</span> <span class="s2">""</span> <span class="k">if</span> <span class="n">exception</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">", exception </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span>
+<a id="__codelineno-4-52" name="__codelineno-4-52"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"7. teardown_request Timing (end, </span><span class="si">{</span><span class="n">ms</span><span class="si">}</span><span class="s2"> ms</span><span class="si">{</span><span class="n">outcome</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 10–11 行：处理请求的动作。路由匹配之后，<strong><em>[request.endpoint]</em></strong> 包含所选路由的名称（<strong><em>[calc.square]</em></strong>：蓝图名称、一个点、函数名称）；<strong><em>[current_app.view_functions]</em></strong> 是将每个名称映射到对应函数的字典。如果没有路由匹配，<strong><em>[request.endpoint]</em></strong> 会被设置为 <strong><em>[None]</em></strong>，函数返回 <strong><em>[None]</em></strong>；</li>
+<li>第 15–16 行：标志是否已设置？<strong><em>[getattr(object, name, default)]</em></strong> 返回给定名称的属性，如果该属性不存在（或对象为 <strong><em>[None]</em></strong>），则返回默认值；</li>
+<li>第 19 行：回调函数由 <strong><em>[app.py]</em></strong> 调用的一个函数注册；</li>
+<li>第 24–28 行：第一个钩子，消息 3：对于标记为 [block] 的动作，URL 的 <strong><em>[?block]</em></strong> 参数会引发 403 错误（*Forbidden*，拒绝访问）：<strong><em>[abort]</em></strong> 抛出一个异常，从而中断处理；</li>
+<li>第 31–35 行：第二个钩子，消息 4：对于标记为 <strong><em>[timing]</em></strong> 的动作，起始时间存储在 <strong><em>[g]</em></strong> 中。<strong><em>[time.perf_counter()]</em></strong> 是专门用于测量时长的高精度时钟；</li>
+<li>第 39–43 行：消息 6。该函数接收响应，并且必须将其返回（可以先做修改）。<strong><em>[response.status_code]</em></strong> 是响应状态码；</li>
+<li>第 47–52 行：消息 7，包含自钩子 4 以来经过的时间。<strong><em>[&quot;start&quot; in g]</em></strong> 测试用于验证计时是否已经开始。如果存在尚未处理的、中断了处理的异常，该函数会接收到这个异常，否则接收到 <strong><em>[None]</em></strong>。</li>
+</ul>
+<h3 id="715-错误处理filterserrorspy">7.1.5. <span style="color: #1f4d78">错误处理：filters/errors.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># filters/errors.py：应用的错误处理器</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">render_template</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPException</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>    <span class="c1"># 给定类型的 "预期外" 异常：ValueError 及其子类</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>    <span class="nd">@app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">value_error</span><span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="ne">ValueError</span><span class="p">):</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"x. errorhandler ValueError (</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>        <span class="c1"># 不使用默认的错误页面，而是使用我们的 [error] 视图，状态码为 500</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">"error.html"</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="mi">500</span><span class="p">),</span> <span class="mi">500</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>    <span class="c1"># HTTP 错误（abort(400)、abort(403)、未知页面 -&gt; 404 等）：</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>    <span class="c1"># HTTPException 是 Werkzeug 所有 HTTP 异常的父类</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>    <span class="nd">@app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="n">HTTPException</span><span class="p">)</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">http_error</span><span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">HTTPException</span><span class="p">):</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"e. errorhandler HTTPException (code </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">"error.html"</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">),</span> <span class="n">e</span><span class="o">.</span><span class="n">code</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 9–13 行：针对 <strong><em>[ValueError]</em></strong> 类（及其子类）的异常处理器：这是一个“意外”错误，被转换为状态码为 500（*Internal Server Error*）的“自定义”错误页面。异常消息显示在控制台中，而不显示在页面上：它可能包含与用户无关的内部细节；</li>
+<li>第 17–20 行：针对所有 HTTP 错误的处理器。<strong><em>[abort(400)]</em></strong>、<strong><em>[abort(403)]</em></strong>、指向不存在路由的 URL（404）、被禁止的方法（405）：这些情况都会抛出 <strong><em>[HTTPException]</em></strong> 的某个子类的异常（<strong><em>[BadRequest]</em></strong>、<strong><em>[Forbidden]</em></strong>、<strong><em>[NotFound]</em></strong>……），该异常在 <strong><em>[code]</em></strong> 属性中携带其状态码。因此，这个单一的处理器就用我们自己的页面取代了 <em>[Werkzeug]</em> 的所有英文错误页面。</li>
+</ul>
+<p>对于一个异常，<em>[Flask]</em> 会选择为与其最接近的类所注册的处理器。你也可以为某个特定的状态码注册处理器：<strong><em>[@app.errorhandler(404)]</em></strong>。没有处理器的异常会变成 500 错误：在调试模式下，这是调试页面（示例 03）；在非调试模式下，则是标准的 500 错误页面，或为状态码 500 注册的处理器所生成的页面。</p>
+<h3 id="716-控制器和错误页面">7.1.6. <span style="color: #1f4d78">控制器和错误页面</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># controllers/calc.py：由两个装饰器标记的动作</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Blueprint</span><span class="p">,</span> <span class="n">abort</span><span class="p">,</span> <span class="n">render_template</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">filters.marks</span><span class="w"> </span><span class="kn">import</span> <span class="n">block</span><span class="p">,</span> <span class="n">timing</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="n">calc</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s2">"calc"</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="nd">@calc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/square/&lt;integer:n&gt;"</span><span class="p">)</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="nd">@block</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="nd">@timing</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"5. action square(</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a>    <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a>        <span class="n">abort</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>  <span class="c1"># 一个 400 错误：参见 filters/errors.py</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">13</span><span class="p">:</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"13 brings bad luck"</span><span class="p">)</span>  <span class="c1"># 一个"意外"错误</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">"calc/result.html"</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="n">n</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 9–11 行：该路由使用 <strong><em>[integer]</em></strong> 转换器；该动作带有两个装饰器。这里顺序同样重要（示例 12）：装饰器自下而上应用，路由装饰器必须最后应用（即最先书写），才能注册被装饰的函数；</li>
+<li>第 15 行：参数不是整数：400 错误；</li>
+<li>第 17 行：数字 13 会引发“意外”错误；</li>
+<li>第 18 行：正常情况。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>{% extends "layout.html" %}
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>{# 错误页面；其模型：错误码 #}
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>{% block content %}
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"alert alert-danger"</span><span class="p">&gt;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>    <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">"h4"</span><span class="p">&gt;</span>Error {{ code }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>    <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"mb-0"</span><span class="p">&gt;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>      {% if code == 400 %}Bad request.
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>      {% elif code == 403 %}Access denied.
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>      {% elif code == 404 %}Page not found.
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>      {% else %}Internal server error.
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a>      {% endif %}
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a>    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a>{% endblock %}
+</code></pre></div></td></tr></table></div>
+<p>错误页面接收错误代码并显示相应的消息。</p>
+<h3 id="717-配置apppy">7.1.7. <span style="color: #1f4d78">配置：app.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span>
+<span class="normal"><a href="#__codelineno-8-27">27</a></span>
+<span class="normal"><a href="#__codelineno-8-28">28</a></span>
+<span class="normal"><a href="#__codelineno-8-29">29</a></span>
+<span class="normal"><a href="#__codelineno-8-30">30</a></span>
+<span class="normal"><a href="#__codelineno-8-31">31</a></span>
+<span class="normal"><a href="#__codelineno-8-32">32</a></span>
+<span class="normal"><a href="#__codelineno-8-33">33</a></span>
+<span class="normal"><a href="#__codelineno-8-34">34</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1"># app.py：示例 24 的应用</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Blueprint</span><span class="p">,</span> <span class="n">Flask</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">controllers.calc</span><span class="w"> </span><span class="kn">import</span> <span class="n">calc</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">filters</span><span class="w"> </span><span class="kn">import</span> <span class="n">hooks</span><span class="p">,</span> <span class="n">errors</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">filters.integer</span><span class="w"> </span><span class="kn">import</span> <span class="n">IntegerConverter</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">filters.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoggerMiddleware</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="n">BOOTSTRAP</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"common"</span> <span class="o">/</span> <span class="s2">"bootstrap"</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_app</span><span class="p">():</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a>    <span class="n">app</span><span class="o">.</span><span class="n">jinja_env</span><span class="o">.</span><span class="n">trim_blocks</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a>    <span class="n">app</span><span class="o">.</span><span class="n">jinja_env</span><span class="o">.</span><span class="n">lstrip_blocks</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a>    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">Blueprint</span><span class="p">(</span><span class="s2">"bootstrap"</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span> <span class="n">static_folder</span><span class="o">=</span><span class="n">BOOTSTRAP</span><span class="p">,</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a>                                     <span class="n">static_url_path</span><span class="o">=</span><span class="s2">"/bootstrap"</span><span class="p">))</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a>    <span class="c1"># &lt;integer:...&gt; 变量的转换器</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a>    <span class="n">app</span><span class="o">.</span><span class="n">url_map</span><span class="o">.</span><span class="n">converters</span><span class="p">[</span><span class="s2">"integer"</span><span class="p">]</span> <span class="o">=</span> <span class="n">IntegerConverter</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a>    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">calc</span><span class="p">)</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23"></a>    <span class="c1"># 在每个动作之前和之后执行的函数，按</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24"></a>    <span class="c1"># 注册的顺序</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25"></a>    <span class="n">hooks</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26"></a>    <span class="c1"># 错误处理器</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27"></a>    <span class="n">errors</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28"></a>    <span class="c1"># WSGI 中间件：它包装整个 Flask 应用</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29"></a>    <span class="n">app</span><span class="o">.</span><span class="n">wsgi_app</span> <span class="o">=</span> <span class="n">LoggerMiddleware</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">wsgi_app</span><span class="p">)</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30"></a>    <span class="k">return</span> <span class="n">app</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31"></a>
+<a id="__codelineno-8-32" name="__codelineno-8-32"></a>
+<a id="__codelineno-8-33" name="__codelineno-8-33"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34"></a>    <span class="n">create_app</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 21 行：转换器；</li>
+<li>第 25–27 行：回调函数和错误处理器；</li>
+<li>第 29 行：中间件。<strong><em>[app.wsgi_app]</em></strong> 是服务器调用 <em>[Flask]</em> 应用程序所用的方法；它被中间件取代，而中间件会调用旧的方法。我们包装的是 <strong><em>[app.wsgi_app]</em></strong> 而不是 <strong><em>[app]</em></strong> 本身，这样变量 <strong><em>[app]</em></strong> 仍然是 <em>[Flask]</em> 对象，保留它的各个方法（<strong><em>[run]</em></strong>、<strong><em>[route]</em></strong>……）。</li>
+</ul>
+<h3 id="718-执行">7.1.8. <span style="color: #1f4d78">执行</span></h3>
+<p>正常情况，<strong><em>[/square/7]</em></strong>：</p>
+<p><img src="images/10000000000002BE0000006DD7CE2EE0.png" width="428" height="66" style="width:11.322cm;height:1.759cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BE0000006DD7CE2EE0.png" /></p>
+<p>服务器控制台按顺序显示这八个步骤：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>--- GET /square/7
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>1. middleware (before)
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>2. conversion of the parameter (received value: "7")
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>3. before_request Block (targeted action: calc.square)
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>4. before_request Timing (before)
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>5. action square(7)
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>6. after_request Timing (code 200)
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>7. teardown_request Timing (end, 1 ms)
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>8. middleware (after: code 200 OK)
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>127.0.0.1 - - [26/Sep/2026 15:39:00] "GET /square/7 HTTP/1.1" 200 -
+</code></pre></div></td></tr></table></div>
+<p>最后一行是 <em>[Werkzeug]</em> 开发服务器的日志条目，在响应发送之后写入。被阻止的访问，<strong><em>[/square/7?block]</em></strong>：</p>
+<p><img src="images/10000000000002BE000000B7E0E42CBB.png" width="428" height="112" style="width:11.322cm;height:2.953cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BE000000B7E0E42CBB.png" /></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span>
+<span class="normal"><a href="#__codelineno-10-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>--- GET /square/7?block
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>1. middleware (before)
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>2. conversion of the parameter (received value: "7")
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>3. before_request Block (targeted action: calc.square)
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>e. errorhandler HTTPException (code 403)
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a>6. after_request Timing (code 403)
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a>8. middleware (after: code 403 FORBIDDEN)
+</code></pre></div></td></tr></table></div>
+<p>第一次调用引发了异常：第二次调用和该动作都没有执行。由处理器生成的错误响应会经过 <strong><em>[after_request]</em></strong>；<strong><em>[teardown_request]</em></strong> 被调用了，但没有显示任何内容，因为操作并未开始。参数不是整数，<strong><em>[/square/abc]</em></strong>：</p>
+<p><img src="images/10000000000002BE000000B713AD3FBA.png" width="428" height="112" style="width:11.322cm;height:2.953cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BE000000B713AD3FBA.png" /></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>--- GET /square/abc
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>1. middleware (before)
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>2. conversion of the parameter (received value: "abc")
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>3. before_request Block (targeted action: calc.square)
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a>4. before_request Timing (before)
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a>5. action square(None)
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a>e. errorhandler HTTPException (code 400)
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a>6. after_request Timing (code 400)
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a>7. teardown_request Timing (end, 0 ms)
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a>8. middleware (after: code 400 BAD REQUEST)
+</code></pre></div></td></tr></table></div>
+<p>这一次，动作被调用了——<strong><em>[None]</em></strong>——并且它引发了 400 错误。“意外”错误，<strong><em>[/square/13]</em></strong>：</p>
+<p><img src="images/10000000000002BE000000B71A1427BF.png" width="428" height="112" style="width:11.322cm;height:2.953cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BE000000B71A1427BF.png" /></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>--- GET /square/13
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>1. middleware (before)
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>2. conversion of the parameter (received value: "13")
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>3. before_request Block (targeted action: calc.square)
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>4. before_request Timing (before)
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a>5. action square(13)
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a>x. errorhandler ValueError (13 brings bad luck)
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>6. after_request Timing (code 500)
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a>7. teardown_request Timing (end, 0 ms)
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a>8. middleware (after: code 500 INTERNAL SERVER ERROR)
+</code></pre></div></td></tr></table></div>
+<p>该异常由其处理器处理：用户看到的是“自定义”错误页面，而不是调试页面，即使调试模式已启用。最后，不对应任何路由的 URL，<strong><em>[/unknown]</em></strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>--- GET /unknown
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>1. middleware (before)
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>e. errorhandler HTTPException (code 404)
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a>8. middleware (after: code 404 NOT FOUND)
+</code></pre></div></td></tr></table></div>
+<p>路由失败：没有路由、没有转换器、没有动作。回调函数已经执行，但由于找不到目标动作，因此没有显示任何内容。404 页面是我们自己的：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>curl -i http://localhost:5000/unknown
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>HTTP/1.1 404 NOT FOUND
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a>Content-Type: text/html; charset=utf-8
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>Content-Length: 375
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a>...
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>  &lt;div class="alert alert-danger"&gt;
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a>    &lt;h1 class="h4"&gt;Error 404&lt;/h1&gt;
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a>    &lt;p class="mb-0"&gt;
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a>Page not found.
+<a id="__codelineno-15-9" name="__codelineno-15-9"></a>    &lt;/p&gt;
+<a id="__codelineno-15-10" name="__codelineno-15-10"></a>  &lt;/div&gt;
+<a id="__codelineno-15-11" name="__codelineno-15-11"></a>...
+</code></pre></div></td></tr></table></div>
+<p>我们来抓住要点。<strong><em>[before_request]</em></strong> 函数是放置许多动作共有的检查（用户是否已登录？他是否有权限访问该动作？）的合适位置：下一章将用它们来实现身份验证。错误处理器确保无论发生什么错误，用户都不会看到技术性页面：案例研究为每种类型的错误都准备了一个处理器。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 Anthropic 的 AI <strong>Claude</strong> 应 <strong>Serge Tahé</strong> 的请求编写，根据
+        <em>知识共享署名 – 禁止商业使用 –
+        共享 3.0 未本地化版</em>的条款向公众开放。
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

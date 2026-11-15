@@ -1,0 +1,1216 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="[Flask] Web 框架分步入门">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-flask-sept-2026/%E6%95%B0%E6%8D%AE%E4%BD%9C%E7%94%A8%E5%9F%9F.html">
+      
+      
+        <link rel="prev" href="%E5%9B%BD%E9%99%85%E5%8C%96.html">
+      
+      
+        <link rel="next" href="%E8%AF%B7%E6%B1%82%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>6. 数据作用域 - [Flask] Web 框架分步入门</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "[Flask] Web 框架分步入门";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#6-数据作用域" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="[Flask] Web 框架分步入门" class="md-header__button md-logo" aria-label="[Flask] Web 框架分步入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            [Flask] Web 框架分步入门
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6. 数据作用域
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-flask-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="[Flask] Web 框架分步入门" class="md-nav__button md-logo" aria-label="[Flask] Web 框架分步入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    [Flask] Web 框架分步入门
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-flask-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AE%80%E4%BB%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%8A%A8%E4%BD%9C-%E8%B7%AF%E7%94%B1-%E5%93%8D%E5%BA%94.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 动作、路由、响应
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%8A%A8%E4%BD%9C%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. 动作模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%A7%86%E5%9B%BE%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 视图及其模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%9B%BD%E9%99%85%E5%8C%96.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 国际化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 数据作用域
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="%E6%95%B0%E6%8D%AE%E4%BD%9C%E7%94%A8%E5%9F%9F.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 数据作用域
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61-示例-23作用域" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. 示例 23：作用域
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1. 示例 23：作用域">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#611-对象servicescounterpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1.1. 对象：services/counter.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#612-配置apppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1.2. 配置：app.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#613-控制器controllersscopespy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1.3. 控制器：controllers/scopes.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#614-视图templatesscopesscopeshtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1.4. 视图：templates/scopes/scopes.html
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#615-执行" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1.5. 执行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%AF%B7%E6%B1%82%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 请求的生命周期
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E4%B8%8E%E6%8E%88%E6%9D%83.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 身份验证与授权
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 分层架构与数据访问
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E9%98%B6%E6%AE%B5%E6%80%A7%E5%B0%8F%E7%BB%93.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 阶段性小结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6-rdvmedecins-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 案例研究：RdvMedecins 应用程序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%BB%93%E8%AE%BA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E9%99%84%E5%BD%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 附录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="6-数据作用域">6. <span style="color: #2e74b5">数据作用域</span></h1>
+<p>Web 应用程序同时为许多用户提供服务，每个用户还会发出大量请求。因此，数据可以在多个层级上共享，这些层级称为数据的<strong>作用域</strong>：</p>
+<ul>
+<li><strong>应用程序</strong>作用域：数据在服务器的整个生命周期内由所有用户共享（例如医生列表）；</li>
+<li><strong>请求</strong>作用域：数据仅在单个请求期间存在（视图的模型，以及为该请求所识别出的已登录用户）；</li>
+<li><strong>客户端</strong>作用域：数据专属于某个用户，并且必须在一个请求到下一个请求之间保持（所选语言、已登录用户）。</li>
+</ul>
+<p>对于最后这种作用域，Web 应用程序长期以来使用由服务器维护的<strong>会话</strong>：即为每个浏览器专设的一块内存，通过标识 Cookie 来识别（<strong><em>[JSESSIONID]</em></strong> 用于 <em>[Java]</em>，<strong><em>[PHPSESSID]</em></strong> 用于 <em>[PHP]</em>）。<em>[Flask]</em> 的会话则不同：正如我们在示例 20 中看到的，它存储在客户端的<strong>已签名 Cookie 中</strong>。服务器在同一用户的两次请求之间不存储任何东西：这称为无状态。例如，这使得可以在负载均衡器后面运行多个相同的服务器：其中任何一个都可以处理任何请求。代价是 Cookie 受用户控制；用户可以读取它，并尝试修改它。因此，这里只存放非敏感数据，并且——如果数据必须可信——<strong>由服务器对其签名</strong>，服务器随后便能检测到任何修改：<em>[Flask]</em> 的会话和身份验证令牌就是这种情况（见身份验证一章）。</p>
+<p>在 <em>[Flask]</em> 中，每种作用域都有自己的容器：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>作用域</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>载体</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>生命周期</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">应用程序</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">启动时创建的对象，存储在 <i><b>[app.extensions] </b></i>中，并通过 <i><b>[current_app] </b></i>获取（示例 06）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">整个服务器生命周期，由所有请求共享</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">请求</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">对象 <i><b>[g]</b></i>，以及对象 <i><b>[request] </b></i>本身（示例 16）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">处理请求期间</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">会话</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">对象 <i><b>[session]</b></i>，一个存储在已签名 Cookie 中的字典</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">直到浏览器关闭（默认情况）</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">客户端</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">由 <i><b>[set_cookie] </b></i>设置的标准 Cookie（示例 22）</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">由 <i><b>[max_age]</b></i> 设定的时长</div></td></tr></table>
+
+<p>对象 <strong><em>[current_app]</em></strong>、<strong><em>[g]</em></strong>、<strong><em>[request]</em></strong> 和 <strong><em>[session]</em></strong> 都是从包 <strong><em>[flask]</em></strong> 中导入的。它们是<strong>代理</strong> （示例 05）：在请求期间，每个代理都指向<strong>该</strong>请求（或处理该请求的应用程序）的对象。</p>
+<h2 id="61-示例-23作用域">6.1. <span style="color: #2e74b5">示例 23：作用域</span></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span>
+<span class="normal"><a href="#__codelineno-0-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>23-scopes/
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>├── app.py
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>├── controllers/
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>│   └── scopes.py
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>├── services/
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>│   └── counter.py
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>└── templates/
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>    └── scopes/
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>        └── scopes.html
+</code></pre></div></td></tr></table></div>
+<h3 id="611-对象servicescounterpy">6.1.1. <span style="color: #1f4d78">对象：services/counter.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># services/counter.py：一个共享计数器，以及一次请求的信息</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">count</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">threading</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lock</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="c1"># APPLICATION 作用域：唯一的实例（见 app.py）</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">CounterService</span><span class="p">:</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_total</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>        <span class="c1"># 多个请求可能同时运行：锁保证</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>        <span class="c1"># 两次同时进行的递增不会丢失</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">increment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a>        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_total</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_total</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="c1"># REQUEST 作用域：每个请求一个实例（见 app.py，start 函数）</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="k">class</span><span class="w"> </span><span class="nc">RequestInfo</span><span class="p">:</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a>    <span class="c1"># 由所有实例共享的计数器（类属性）；</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a>    <span class="c1"># next(...) 是原子的：两个线程绝不会得到同一个数字</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a>    <span class="n">_instances</span> <span class="o">=</span> <span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">RequestInfo</span><span class="o">.</span><span class="n">_instances</span><span class="p">)</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 7–18 行：一个访问计数器，具有应用程序作用域：只有一个对象，由所有请求共享。与示例 20 中的任务列表一样，由一把锁保护递增操作：<strong><em>[self._total += 1]</em></strong> 语句不是<strong>原子的</strong> （它先读取值，再递增，然后写回），两个线程同时执行它可能会读到相同的值——导致丢失一次访问；</li>
+<li>第 22–30 行：请求作用域的信息：每个请求一个对象，包含一个编号和请求的时间。编号来自所有实例共享的计数器：标准模块 <strong><em>[count(1)]</em></strong> 的 <strong><em>[itertools]</em></strong> 是一个<strong>迭代器</strong> ，每次调用 <strong><em>[next]</em></strong> 时依次产生 1、2、3……这是一个<strong>类属性</strong> （在类级别而不是构造函数中声明）：它由所有实例共享。</li>
+</ul>
+<h3 id="612-配置apppy">6.1.2. <span style="color: #1f4d78">配置：app.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span>
+<span class="normal"><a href="#__codelineno-2-30">30</a></span>
+<span class="normal"><a href="#__codelineno-2-31">31</a></span>
+<span class="normal"><a href="#__codelineno-2-32">32</a></span>
+<span class="normal"><a href="#__codelineno-2-33">33</a></span>
+<span class="normal"><a href="#__codelineno-2-34">34</a></span>
+<span class="normal"><a href="#__codelineno-2-35">35</a></span>
+<span class="normal"><a href="#__codelineno-2-36">36</a></span>
+<span class="normal"><a href="#__codelineno-2-37">37</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># app.py：示例 23 的应用</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Blueprint</span><span class="p">,</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">g</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">controllers.scopes</span><span class="w"> </span><span class="kn">import</span> <span class="n">scopes</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">services.counter</span><span class="w"> </span><span class="kn">import</span> <span class="n">CounterService</span><span class="p">,</span> <span class="n">RequestInfo</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="n">BOOTSTRAP</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"common"</span> <span class="o">/</span> <span class="s2">"bootstrap"</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_app</span><span class="p">():</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a>    <span class="n">app</span><span class="o">.</span><span class="n">jinja_env</span><span class="o">.</span><span class="n">trim_blocks</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a>    <span class="n">app</span><span class="o">.</span><span class="n">jinja_env</span><span class="o">.</span><span class="n">lstrip_blocks</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a>    <span class="c1"># 为会话 Cookie 签名的密钥（SESSION 作用域）</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"SECRET_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"a-secret-key-for-example-23"</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a>    <span class="c1"># APPLICATION 作用域：单一对象，在启动时创建，由所有用户的</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>    <span class="c1"># 所有请求共享</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a>    <span class="n">app</span><span class="o">.</span><span class="n">extensions</span><span class="p">[</span><span class="s2">"counter"</span><span class="p">]</span> <span class="o">=</span> <span class="n">CounterService</span><span class="p">()</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a>    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">Blueprint</span><span class="p">(</span><span class="s2">"bootstrap"</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span> <span class="n">static_folder</span><span class="o">=</span><span class="n">BOOTSTRAP</span><span class="p">,</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a>                                     <span class="n">static_url_path</span><span class="o">=</span><span class="s2">"/bootstrap"</span><span class="p">))</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a>    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">scopes</span><span class="p">)</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a>    <span class="c1"># REQUEST 作用域：g 对象随每个请求而生，随请求而灭。这个</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a>    <span class="c1"># 在动作之前执行的函数，在其中存入一个对象，动作和</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a>    <span class="c1"># 视图会在本次请求中再次找到它</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a>    <span class="nd">@app</span><span class="o">.</span><span class="n">before_request</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a>        <span class="n">g</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="n">RequestInfo</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%H:%M:%S.</span><span class="si">%f</span><span class="s2">"</span><span class="p">)[:</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a>    <span class="k">return</span> <span class="n">app</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a>
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a>    <span class="n">create_app</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 18 行：用于对会话 Cookie 签名的密钥；</li>
+<li>第 21 行：应用程序作用域的对象；</li>
+<li>第 29–31 行：在每个请求之前，一个 <strong><em>[RequestInfo]</em></strong> 对象被存储在 <strong><em>[g]</em></strong> 中。动作和视图会获取它，但只限于本次请求期间。<strong><em>[strftime(&quot;%H:%M:%S.%f&quot;)]</em></strong> 把时间格式化为带微秒的形式（<strong><em>[%f]</em></strong>，六位数字）；<strong><em>[[:-3]]</em></strong> 去掉字符串的最后三个字符，只留下毫秒。</li>
+</ul>
+<h3 id="613-控制器controllersscopespy">6.1.3. <span style="color: #1f4d78">控制器：controllers/scopes.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># controllers/scopes.py：四种数据作用域</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Blueprint</span><span class="p">,</span> <span class="n">current_app</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">make_response</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">session</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="n">scopes</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s2">"scopes"</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="nd">@scopes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">display</span><span class="p">():</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>    <span class="c1"># APPLICATION：共享计数器</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>    <span class="n">total</span> <span class="o">=</span> <span class="n">current_app</span><span class="o">.</span><span class="n">extensions</span><span class="p">[</span><span class="s2">"counter"</span><span class="p">]</span><span class="o">.</span><span class="n">increment</span><span class="p">()</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>    <span class="c1"># SESSION：本浏览器专属的字典，Flask 将其存放在</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="c1"># 签名的 Cookie（session）中；它持续到浏览器关闭为止</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>    <span class="n">session</span><span class="p">[</span><span class="s2">"visits"</span><span class="p">]</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"visits"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a>    <span class="c1"># CLIENT：由浏览器保存在普通 Cookie 中的一份数据，</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>    <span class="c1"># 每次请求都会回传给服务器</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>    <span class="n">my_visits</span> <span class="o">=</span> <span class="n">to_integer</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"myVisits"</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">render_template</span><span class="p">(</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>        <span class="s2">"scopes/scopes.html"</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">number</span><span class="p">,</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a>        <span class="n">session_visits</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s2">"visits"</span><span class="p">],</span> <span class="n">my_visits</span><span class="o">=</span><span class="n">my_visits</span><span class="p">))</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a>    <span class="n">response</span><span class="o">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s2">"myVisits"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">my_visits</span><span class="p">),</span> <span class="n">httponly</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">samesite</span><span class="o">=</span><span class="s2">"Lax"</span><span class="p">)</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a>    <span class="k">return</span> <span class="n">response</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="c1"># "41" -&gt; 41；None 或 "abc" -&gt; 0</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="k">def</span><span class="w"> </span><span class="nf">to_integer</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a>        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a>    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a>        <span class="k">return</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 10 行：应用程序作用域。<strong><em>[current_app]</em></strong> 指向正在处理当前请求的应用程序；</li>
+<li>第 13 行：会话作用域。<strong><em>[session]</em></strong> 像字典一样使用：<strong><em>[session.get(&quot;visits&quot;, 0)]</em></strong> 返回该键的值，如果该键不存在则返回 0。当动作修改会话时，<em>[Flask]</em> 会在响应中附带发送一个新的 Cookie <strong><em>[session]</em></strong>，其中包含已签名的字典；</li>
+<li>第 16 行：客户端作用域，使用一个普通 Cookie <strong><em>[myVisits]</em></strong>，读取自 <strong><em>[request.cookies]</em></strong>。它的值是浏览器提供的字符串，因此可能缺失或无效；函数 <strong><em>[to_integer]</em></strong> 在这两种情况下都返回 0；</li>
+<li>第 17–20 行：要设置 Cookie，需要响应对象：<strong><em>[make_response]</em></strong> 用视图生成的页面构造它（示例 05），然后 <strong><em>[set_cookie]</em></strong> 向其添加头部 <strong><em>[Set-Cookie]</em></strong>。如果没有 <strong><em>[max_age]</em></strong>，Cookie 会持续到浏览器关闭（它是浏览器所定义的“会话”Cookie）；</li>
+<li>第 18 行：请求作用域：存储在 <strong><em>[g]</em></strong> 中的对象，由函数 <strong><em>[start]</em></strong> 存入。</li>
+</ul>
+<h3 id="614-视图templatesscopesscopeshtml">6.1.4. <span style="color: #1f4d78">视图：templates/scopes/scopes.html</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="cp">&lt;!doctype html&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">"en"</span><span class="p">&gt;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">"utf-8"</span><span class="p">&gt;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Scopes<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>  <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">"stylesheet"</span> <span class="na">href</span><span class="o">=</span><span class="s">"{{ url_for('bootstrap.static', filename='css/bootstrap.min.css') }}"</span><span class="p">&gt;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"container py-3"</span><span class="p">&gt;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">"h3"</span><span class="p">&gt;</span>The scopes of data<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    {# g 和 session 在同一个请求期间可在视图中访问 #}
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a>      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>application: {{ total }} visit(s) to the site, all browsers combined<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a>      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>request: object no. {{ instance }} (no. {{ g.info.number }} in the view),
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a>        request received at {{ g.info.start }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a>      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>session: {{ session_visits }} visit(s) from this browser ({{ session["visits"] }} in the view)<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a>      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>client: {{ my_visits }} visit(s) from this browser<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a>    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>对象 <strong><em>[g]</em></strong> 和 <strong><em>[session]</em></strong> 在视图中同样可以访问。视图显示从动作收到的值，并在括号中显示直接从 <strong><em>[g]</em></strong> 和 <strong><em>[session]</em></strong> 读取的相同的值：在同一个请求期间，动作和视图看到的是相同的对象。</p>
+<h3 id="615-执行">6.1.5. <span style="color: #1f4d78">执行</span></h3>
+<p>在浏览器中访问两次之后：</p>
+<p><img src="images/10000000000002BE000000F8443285B3.png" width="428" height="151" style="width:11.322cm;height:4.001cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BE000000F8443285B3.png" /></p>
+<p>让我们用 <em>[curl]</em> 来跟踪这些请求，它充当第一个浏览器，把 Cookie 存储在文件 <strong><em>[a.txt]</em></strong> 中：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>curl -i -c a.txt -b a.txt http://localhost:5000/
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>HTTP/1.1 200 OK
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>Content-Type: text/html; charset=utf-8
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>Content-Length: 581
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>Set-Cookie: myVisits=1; HttpOnly; Path=/; SameSite=Lax
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>Set-Cookie: session=eyJ2aXNpdHMiOjF9.arfKwA.YK-2GACLdbCJ_NXM5dYJYlqEF-4; HttpOnly; Path=/
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>...
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>      &lt;li&gt;application: 1 visit(s) to the site, all browsers combined&lt;/li&gt;
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>      &lt;li&gt;request: object no. 2 (no. 2 in the view),
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>        request received at 15:38:08.779&lt;/li&gt;
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>      &lt;li&gt;session: 1 visit(s) from this browser (1 in the view)&lt;/li&gt;
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>      &lt;li&gt;client: 1 visit(s) from this browser&lt;/li&gt;
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>...
+</code></pre></div></td></tr></table></div>
+<p>响应设置了两个 Cookie。第一个 <strong><em>[myVisits]</em></strong> 以明文形式包含该值。第二个 <strong><em>[session]</em></strong> 包含会话字典：第一个句点之前的部分是 JSON <strong><em>[{&quot;visits&quot;:1}]</em></strong>，经过 Base64 编码（与示例 20 中一样未压缩，因为它很短）；后面是日期和签名。</p>
+<p>请求作用域的对象编号为 2，尽管这是第一次访问该页面：这是因为 <strong><em>[start]</em></strong> 函数会在应用程序收到的<strong>每个</strong>请求之前运行，包括没有对应动作的请求（这里是刚才发出的对不存在的 URL 的请求）以及对静态文件的请求。在浏览器中，每个页面因此会再触发一个对 <em>[Bootstrap]</em> 样式表的请求：这就是截图中编号为奇数的原因。使用相同的 Cookie 进行第二次访问：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>curl -i -c a.txt -b a.txt http://localhost:5000/
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span>
+<span class="normal"><a href="#__codelineno-8-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>Set-Cookie: myVisits=2; HttpOnly; Path=/; SameSite=Lax
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>Set-Cookie: session=eyJ2aXNpdHMiOjJ9.arfKwA.l68wWEMYpKTfN3xPp_lysXPExO8; HttpOnly; Path=/
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>...
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>      &lt;li&gt;application: 2 visit(s) to the site, all browsers combined&lt;/li&gt;
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>      &lt;li&gt;request: object no. 3 (no. 3 in the view),
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a>        request received at 15:38:08.799&lt;/li&gt;
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a>      &lt;li&gt;session: 2 visit(s) from this browser (2 in the view)&lt;/li&gt;
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a>      &lt;li&gt;client: 2 visit(s) from this browser&lt;/li&gt;
+</code></pre></div></td></tr></table></div>
+<p>第二个“浏览器”，拥有自己的 Cookie 文件，最初为空：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>curl -c b.txt -b b.txt http://localhost:5000/
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>      &lt;li&gt;application: 3 visit(s) to the site, all browsers combined&lt;/li&gt;
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>      &lt;li&gt;request: object no. 4 (no. 4 in the view),
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>        request received at 15:38:08.813&lt;/li&gt;
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>      &lt;li&gt;session: 1 visit(s) from this browser (1 in the view)&lt;/li&gt;
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>      &lt;li&gt;client: 1 visit(s) from this browser&lt;/li&gt;
+</code></pre></div></td></tr></table></div>
+<p>应用程序计数器一直在继续累加；第二个浏览器的会话和 Cookie 则从 1 重新开始。最后，一个恶意用户伪造了自己的 Cookie：<strong><em>[myVisits]</em></strong> 中有 1,000 次访问，以及一个声称包含 <strong><em>[{&quot;visits&quot;:999}]</em></strong> （Base64 编码为 <strong><em>[eyJ2aXNpdHMiOjk5OX0]</em></strong>）的会话，并附上了另一个会话的签名：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>curl -b "myVisits=1000;session=eyJ2aXNpdHMiOjk5OX0.arfKwA.YK-2GACLdbCJ_NXM5dYJYlqEF-4" http://localhost:5000/
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>      &lt;li&gt;application: 4 visit(s) to the site, all browsers combined&lt;/li&gt;
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>      ...
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>      &lt;li&gt;session: 1 visit(s) from this browser (1 in the view)&lt;/li&gt;
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>      &lt;li&gt;client: 1001 visit(s) from this browser&lt;/li&gt;
+</code></pre></div></td></tr></table></div>
+<p>普通 Cookie 被原样接受：1,001 次访问。然而，伪造的会话被拒绝了：它的签名与其内容不匹配，<em>[Flask]</em> 将其忽略，就好像它不存在一样。这正是普通 Cookie 与已签名 Cookie 之间的关键区别。让我们记住这条规则：来自客户端的数据只有在经过服务器签名时才值得信任；即使经过签名，它仍然是<strong>可读的</strong>：我们不在其中放任何机密。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 Anthropic 的 AI <strong>Claude</strong> 应 <strong>Serge Tahé</strong> 的请求编写，根据
+        <em>知识共享署名 – 禁止商业使用 –
+        共享 3.0 未本地化版</em>的条款向公众开放。
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

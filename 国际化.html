@@ -1,0 +1,1579 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="[Flask] Web 框架分步入门">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-flask-sept-2026/%E5%9B%BD%E9%99%85%E5%8C%96.html">
+      
+      
+        <link rel="prev" href="%E8%A7%86%E5%9B%BE%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B.html">
+      
+      
+        <link rel="next" href="%E6%95%B0%E6%8D%AE%E4%BD%9C%E7%94%A8%E5%9F%9F.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>5. 国际化 - [Flask] Web 框架分步入门</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "[Flask] Web 框架分步入门";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#5-国际化" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="[Flask] Web 框架分步入门" class="md-header__button md-logo" aria-label="[Flask] Web 框架分步入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            [Flask] Web 框架分步入门
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5. 国际化
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-flask-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="[Flask] Web 框架分步入门" class="md-nav__button md-logo" aria-label="[Flask] Web 框架分步入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    [Flask] Web 框架分步入门
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-flask-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%AE%80%E4%BB%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%8A%A8%E4%BD%9C-%E8%B7%AF%E7%94%B1-%E5%93%8D%E5%BA%94.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 动作、路由、响应
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%8A%A8%E4%BD%9C%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. 动作模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%A7%86%E5%9B%BE%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 视图及其模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 国际化
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="%E5%9B%BD%E9%99%85%E5%8C%96.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 国际化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-示例-22双语应用程序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. 示例 22：双语应用程序
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1. 示例 22：双语应用程序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#511-字典" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.1. 字典
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#512-翻译服务translationtranslatorpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.2. 翻译服务：translation/translator.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#513-按请求语言格式化translationformatspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.3. 按请求语言格式化：translation/formats.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#514-配置apppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.4. 配置：app.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#515-语言选择controllerslanguagepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.5. 语言选择：controllers/language.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#516-动作controllerspagespy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.6. 动作：controllers/pages.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#517-在视图中翻译" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.7. 在视图中翻译
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#518-执行" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.8. 执行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E6%95%B0%E6%8D%AE%E4%BD%9C%E7%94%A8%E5%9F%9F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 数据作用域
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%AF%B7%E6%B1%82%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 请求的生命周期
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E4%B8%8E%E6%8E%88%E6%9D%83.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 身份验证与授权
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 分层架构与数据访问
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E9%98%B6%E6%AE%B5%E6%80%A7%E5%B0%8F%E7%BB%93.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 阶段性小结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6-rdvmedecins-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 案例研究：RdvMedecins 应用程序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E7%BB%93%E8%AE%BA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E9%99%84%E5%BD%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 附录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="5-国际化">5. <span style="color: #2e74b5">国际化</span></h1>
+<p>国际化的应用程序以用户的语言显示文本。案例研究提供法语和英语两种语言。原理很简单：视图中不再包含文本，而是包含<strong>键</strong> （<strong><em>[MENU.HOME]</em></strong>），并由每种语言的<strong>字典</strong> 把文本与每个键关联起来。所选语言存储在 Cookie 中。</p>
+<p><em>[Flask]</em> 生态系统为此提供了一个扩展 <em>[Flask-Babel]</em>，它依赖标准的翻译系统 <strong><em>[gettext]</em></strong>：文本由工具从代码中提取出来，翻译成 <strong><em>[.po]</em></strong> 文件，然后编译成 <strong><em>[.mo]</em></strong> 文件。这是一个功能强大的系统，但需要专门的工具和一个编译步骤。因此，我们将编写一个读取 JSON 字典的小类：这些文件与案例研究中 <em>[ASP.NET Core MVC]</em>、<em>[NestJS]、</em>和 <em>[Spring MVC]</em> 版本所用的相同，其格式无需任何特殊工具即可读写。另一方面，<em>[Babel]</em> 库仍然用于格式化日期和金额（示例 16）。</p>
+<h2 id="51-示例-22双语应用程序">5.1. <span style="color: #2e74b5">示例 22：双语应用程序</span></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>22-i18n/
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>├── app.py
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>├── controllers/
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>│   ├── language.py
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>│   └── pages.py
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>├── i18n/
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>│   ├── en.json
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>│   └── fr.json
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>├── static/css/
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>│   └── styles.css
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>├── templates/
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>│   ├── fragments/
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>│   │   └── navbar.html
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>│   ├── layout.html
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>│   └── pages/
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>│       ├── home.html
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>│       └── products.html
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>└── translation/
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a>    ├── formats.py
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a>    └── translator.py
+</code></pre></div></td></tr></table></div>
+<h3 id="511-字典">5.1.1. <span style="color: #1f4d78">字典</span></h3>
+<p><strong><em>[i18n/fr.json]</em></strong> 文件：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">  </span><span class="nt">"MENU"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="nt">"HOME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accueil"</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="nt">"PRODUCTS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Produits"</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">  </span><span class="nt">"HOME"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="nt">"TITLE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bienvenue"</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="nt">"HELLO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bonjour {name} !"</span><span class="p">,</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="nt">"DATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nous sommes le {date}."</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">  </span><span class="nt">"PRODUCTS"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">    </span><span class="nt">"TITLE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nos produits"</span><span class="p">,</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">    </span><span class="nt">"NAME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Produit"</span><span class="p">,</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">    </span><span class="nt">"PRICE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Prix"</span><span class="p">,</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">    </span><span class="nt">"COUNT"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{n} produit(s) au catalogue."</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>键在嵌套的 JSON 对象中按主题分组：菜单文本“Home”的完整键为 <strong><em>[MENU.HOME]</em></strong>。文本字符串可以包含<strong>占位符</strong>，写作 <strong><em>[{name}]</em></strong>，它们在翻译时会被替换。文件 <strong><em>[i18n/en.json]</em></strong> 的键与之完全相同：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">  </span><span class="nt">"MENU"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="nt">"HOME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Home"</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="nt">"PRODUCTS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Products"</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="nt">"HOME"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="nt">"TITLE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome"</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="nt">"HELLO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello {name}!"</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="nt">"DATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Today is {date}."</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">  </span><span class="nt">"PRODUCTS"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">    </span><span class="nt">"TITLE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Our products"</span><span class="p">,</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">    </span><span class="nt">"NAME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product"</span><span class="p">,</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">    </span><span class="nt">"PRICE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Price"</span><span class="p">,</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">    </span><span class="nt">"COUNT"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{n} product(s) in the catalogue."</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="512-翻译服务translationtranslatorpy">5.1.2. <span style="color: #1f4d78">翻译服务：translation/translator.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span>
+<span class="normal"><a href="#__codelineno-3-31">31</a></span>
+<span class="normal"><a href="#__codelineno-3-32">32</a></span>
+<span class="normal"><a href="#__codelineno-3-33">33</a></span>
+<span class="normal"><a href="#__codelineno-3-34">34</a></span>
+<span class="normal"><a href="#__codelineno-3-35">35</a></span>
+<span class="normal"><a href="#__codelineno-3-36">36</a></span>
+<span class="normal"><a href="#__codelineno-3-37">37</a></span>
+<span class="normal"><a href="#__codelineno-3-38">38</a></span>
+<span class="normal"><a href="#__codelineno-3-39">39</a></span>
+<span class="normal"><a href="#__codelineno-3-40">40</a></span>
+<span class="normal"><a href="#__codelineno-3-41">41</a></span>
+<span class="normal"><a href="#__codelineno-3-42">42</a></span>
+<span class="normal"><a href="#__codelineno-3-43">43</a></span>
+<span class="normal"><a href="#__codelineno-3-44">44</a></span>
+<span class="normal"><a href="#__codelineno-3-45">45</a></span>
+<span class="normal"><a href="#__codelineno-3-46">46</a></span>
+<span class="normal"><a href="#__codelineno-3-47">47</a></span>
+<span class="normal"><a href="#__codelineno-3-48">48</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># translation/translator.py：翻译服务</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">g</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="k">class</span><span class="w"> </span><span class="nc">Translator</span><span class="p">:</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>    <span class="n">LANGUAGES</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"fr"</span><span class="p">,</span> <span class="s2">"en"</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="n">DEFAULT_LANGUAGE</span> <span class="o">=</span> <span class="s2">"en"</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a>    <span class="c1"># {name}：文本中的参数</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>    <span class="n">PARAMETER</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\{(\w+)\}"</span><span class="p">)</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>        <span class="c1"># 语言 -&gt; （完整键 "HOME.HELLO" -&gt; 文本）</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_dictionaries</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a>        <span class="k">for</span> <span class="n">language</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">LANGUAGES</span><span class="p">:</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a>            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">folder</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">language</span><span class="si">}</span><span class="s2">.json"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_dictionaries</span><span class="p">[</span><span class="n">language</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flatten</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a>    <span class="c1"># 与 [code] 匹配的受支持语言："fr" -&gt; "fr"；"de" 或 None -&gt; "en"</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a>    <span class="nd">@classmethod</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">language</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a>        <span class="k">return</span> <span class="n">code</span> <span class="k">if</span> <span class="n">code</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">LANGUAGES</span> <span class="k">else</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DEFAULT_LANGUAGE</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a>    <span class="c1"># translate("HOME.HELLO", name="Marie") -&gt; "Hello Marie!"，在</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30"></a>    <span class="c1"># 当前请求的语言（g.language，见 app.py）</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32"></a>        <span class="c1"># 缺失的键会显示键本身：疏漏在屏幕上一目了然</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33"></a>        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dictionaries</span><span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">language</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34"></a>        <span class="c1"># 每个 {name} 都被同名参数的值替换</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">PARAMETER</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36"></a>            <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">))),</span> <span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37"></a>
+<a id="__codelineno-3-38" name="__codelineno-3-38"></a>    <span class="c1"># { "MENU": { "HOME": "Home" } } -&gt; { "MENU.HOME": "Home" }</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39"></a>    <span class="nd">@classmethod</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_flatten</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41"></a>        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42"></a>        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43"></a>            <span class="n">full_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">prefix</span> <span class="k">else</span> <span class="n">key</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44"></a>            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45"></a>                <span class="n">result</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_flatten</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">full_key</span><span class="p">))</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47"></a>                <span class="n">result</span><span class="p">[</span><span class="n">full_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48"></a>        <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 11–12 行：支持的语言和默认语言——<strong>类属性</strong> 由该类的所有对象共享，无需对象即可访问（<strong><em>[Translator.LANGUAGES]</em></strong>）；</li>
+<li>第 15 行：参数的正则表达式：一个花括号（<strong><em>[\{]</em></strong>，前面加上 <strong><em>[\]</em></strong> 是因为花括号在正则表达式中有特殊含义）、一个或多个单词字符（<strong><em>[\w+]</em></strong>），以及一个右花括号。圆括号<strong>捕获</strong>参数名称。<strong><em>[re.compile]</em></strong> 一次性解析该表达式；</li>
+<li>第 17–22 行：构造函数在创建服务时一次性读取字典。<strong><em>[json.load]</em></strong> 把 JSON 文件的内容转换为 <em>[Python]</em> 对象（嵌套字典）。<strong><em>[with open(...) as file]</em></strong> 打开文件，并确保在代码块结束时将其关闭；<strong><em>[encoding=&quot;utf-8&quot;]</em></strong> 至关重要，因为默认编码取决于系统（在 <em>[Windows]</em> 下，它并不总是 <em>[UTF-8]</em>）；</li>
+<li>第 25–27 行：<strong>类方法</strong> （<strong><em>[@classmethod]</em></strong> 装饰器）接收的是类（<strong><em>[cls]</em></strong>）而不是对象；它在类上调用：<strong><em>[Translator.language(&quot;en&quot;)]</em></strong>。它返回与某个代码对应的受支持语言，如果代码未知或缺失，则返回默认语言；</li>
+<li>第 31–36 行：键的翻译，使用当前请求的语言，该语言读取自 <strong><em>[g.language]</em></strong> （见示例 16）。字典中缺失的键会原样显示：遗漏会立刻在屏幕上显现出来。参数以命名参数的形式接收（<strong><em>[**parameters]</em></strong>）；正则表达式方法 <strong><em>[sub]</em></strong> 用一个函数的结果替换文本中找到的每个参数——这里是一个<strong>匿名函数</strong> （<strong><em>[lambda m: ...]</em></strong>），它接收找到的匹配（<strong><em>[m]</em></strong>）：<strong><em>[m.group(1)]</em></strong> 是捕获到的名称，<strong><em>[m.group(0)] 是</em></strong>完整文本 <strong><em>[{name}]</em></strong>，如果没有提供该参数，就保留它；</li>
+<li>第 40–48 行：嵌套的 JSON 对象被“展平”为单个字典，其键就是完整的键：<strong><em>[{&quot;MENU&quot;: {&quot;HOME&quot;: &quot;Home&quot;}}]</em></strong> 变为 <strong><em>[{&quot;MENU.HOME&quot;: &quot;Home&quot;}]</em></strong>。该方法是<strong>递归的</strong>：它对每个嵌套对象调用自身，并把当前键用作前缀。</li>
+</ul>
+<h3 id="513-按请求语言格式化translationformatspy">5.1.3. <span style="color: #1f4d78">按请求语言格式化：translation/formats.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1"># translation/formats.py：以请求的语言格式化的日期和金额（见示例 16）</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">decimal</span><span class="w"> </span><span class="kn">import</span> <span class="n">Decimal</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">babel.dates</span><span class="w"> </span><span class="kn">import</span> <span class="n">format_date</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">babel.numbers</span><span class="w"> </span><span class="kn">import</span> <span class="n">format_currency</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">g</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="c1"># 以完整文字表示的日期</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">long_date</span><span class="p">(</span><span class="n">day</span><span class="p">:</span> <span class="n">date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>    <span class="k">return</span> <span class="n">format_date</span><span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"full"</span><span class="p">,</span> <span class="n">locale</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="c1"># 以欧元表示的金额</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="k">def</span><span class="w"> </span><span class="nf">money</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span> <span class="n">Decimal</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a>    <span class="k">return</span> <span class="n">format_currency</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span> <span class="s2">"EUR"</span><span class="p">,</span> <span class="n">locale</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>示例 16 中的过滤器，这一次使用 <strong><em>[g.language]</em></strong>。<em>[Babel]</em> 既接受单独的语言（<strong><em>[fr]</em></strong>、<strong><em>[en]</em></strong>），也接受语言加国家（<strong><em>[fr_FR]</em></strong>）；对于 <strong><em>[en]</em></strong>，它采用美国的惯例。</p>
+<h3 id="514-配置apppy">5.1.4. <span style="color: #1f4d78">配置：app.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span>
+<span class="normal"><a href="#__codelineno-5-24">24</a></span>
+<span class="normal"><a href="#__codelineno-5-25">25</a></span>
+<span class="normal"><a href="#__codelineno-5-26">26</a></span>
+<span class="normal"><a href="#__codelineno-5-27">27</a></span>
+<span class="normal"><a href="#__codelineno-5-28">28</a></span>
+<span class="normal"><a href="#__codelineno-5-29">29</a></span>
+<span class="normal"><a href="#__codelineno-5-30">30</a></span>
+<span class="normal"><a href="#__codelineno-5-31">31</a></span>
+<span class="normal"><a href="#__codelineno-5-32">32</a></span>
+<span class="normal"><a href="#__codelineno-5-33">33</a></span>
+<span class="normal"><a href="#__codelineno-5-34">34</a></span>
+<span class="normal"><a href="#__codelineno-5-35">35</a></span>
+<span class="normal"><a href="#__codelineno-5-36">36</a></span>
+<span class="normal"><a href="#__codelineno-5-37">37</a></span>
+<span class="normal"><a href="#__codelineno-5-38">38</a></span>
+<span class="normal"><a href="#__codelineno-5-39">39</a></span>
+<span class="normal"><a href="#__codelineno-5-40">40</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># app.py：示例 22 的应用</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Blueprint</span><span class="p">,</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">request</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">controllers.language</span><span class="w"> </span><span class="kn">import</span> <span class="n">LANGUAGE_COOKIE</span><span class="p">,</span> <span class="n">language</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">controllers.pages</span><span class="w"> </span><span class="kn">import</span> <span class="n">pages</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">translation</span><span class="w"> </span><span class="kn">import</span> <span class="n">formats</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">translation.translator</span><span class="w"> </span><span class="kn">import</span> <span class="n">Translator</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="c1"># Bootstrap，由各示例共享（见示例 15）</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="n">BOOTSTRAP</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"common"</span> <span class="o">/</span> <span class="s2">"bootstrap"</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_app</span><span class="p">():</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>    <span class="n">app</span><span class="o">.</span><span class="n">jinja_env</span><span class="o">.</span><span class="n">trim_blocks</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="n">app</span><span class="o">.</span><span class="n">jinja_env</span><span class="o">.</span><span class="n">lstrip_blocks</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a>    <span class="c1"># 翻译服务：各语言字典，在启动时只读取一次</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>    <span class="n">translator</span> <span class="o">=</span> <span class="n">Translator</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">root_path</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"i18n"</span><span class="p">)</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a>    <span class="n">app</span><span class="o">.</span><span class="n">extensions</span><span class="p">[</span><span class="s2">"translator"</span><span class="p">]</span> <span class="o">=</span> <span class="n">translator</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a>    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">Blueprint</span><span class="p">(</span><span class="s2">"bootstrap"</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span> <span class="n">static_folder</span><span class="o">=</span><span class="n">BOOTSTRAP</span><span class="p">,</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23"></a>                                     <span class="n">static_url_path</span><span class="o">=</span><span class="s2">"/bootstrap"</span><span class="p">))</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24"></a>    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">language</span><span class="p">)</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25"></a>    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26"></a>
+<a id="__codelineno-5-27" name="__codelineno-5-27"></a>    <span class="c1"># 每个请求的语言：取自 [language] Cookie，否则为英语</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28"></a>    <span class="nd">@app</span><span class="o">.</span><span class="n">before_request</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_language</span><span class="p">():</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30"></a>        <span class="n">g</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="n">Translator</span><span class="o">.</span><span class="n">language</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">LANGUAGE_COOKIE</span><span class="p">))</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31"></a>
+<a id="__codelineno-5-32" name="__codelineno-5-32"></a>    <span class="c1"># 在视图中：{{ t('KEY') }}、{{ day | long_date }}、{{ price | money }}</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33"></a>    <span class="n">app</span><span class="o">.</span><span class="n">add_template_global</span><span class="p">(</span><span class="n">translator</span><span class="o">.</span><span class="n">translate</span><span class="p">,</span> <span class="s2">"t"</span><span class="p">)</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34"></a>    <span class="n">app</span><span class="o">.</span><span class="n">add_template_filter</span><span class="p">(</span><span class="n">formats</span><span class="o">.</span><span class="n">long_date</span><span class="p">)</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35"></a>    <span class="n">app</span><span class="o">.</span><span class="n">add_template_filter</span><span class="p">(</span><span class="n">formats</span><span class="o">.</span><span class="n">money</span><span class="p">)</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36"></a>    <span class="k">return</span> <span class="n">app</span>
+<a id="__codelineno-5-37" name="__codelineno-5-37"></a>
+<a id="__codelineno-5-38" name="__codelineno-5-38"></a>
+<a id="__codelineno-5-39" name="__codelineno-5-39"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+<a id="__codelineno-5-40" name="__codelineno-5-40"></a>    <span class="n">create_app</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 20–21 行：服务，在启动时创建一次。<strong><em>[app.root_path]</em></strong> 是应用程序文件夹（即 <strong><em>[app.py]</em></strong> 所在的文件夹）；</li>
+<li>第 28–30 行：在每个动作之前，请求语言被设置为 [language] Cookie 中的语言（如果它存在且受支持）；否则默认为英语。<strong><em>[request.cookies]</em></strong> 是浏览器发送的 Cookie 字典；</li>
+<li>第 33 行：服务的 [translate] 方法以简短的名称 <strong><em>[t]</em></strong> （<strong><em>[add_template_global]</em></strong> 的第二个参数）作为全局函数提供给视图使用。对象的方法可以像函数一样使用：<strong><em>[translator.translate] 是与对象 [translator] 关联的方法</em></strong>。</li>
+</ul>
+<h3 id="515-语言选择controllerslanguagepy">5.1.5. <span style="color: #1f4d78">语言选择：controllers/language.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span>
+<span class="normal"><a href="#__codelineno-6-23">23</a></span>
+<span class="normal"><a href="#__codelineno-6-24">24</a></span>
+<span class="normal"><a href="#__codelineno-6-25">25</a></span>
+<span class="normal"><a href="#__codelineno-6-26">26</a></span>
+<span class="normal"><a href="#__codelineno-6-27">27</a></span>
+<span class="normal"><a href="#__codelineno-6-28">28</a></span>
+<span class="normal"><a href="#__codelineno-6-29">29</a></span>
+<span class="normal"><a href="#__codelineno-6-30">30</a></span>
+<span class="normal"><a href="#__codelineno-6-31">31</a></span>
+<span class="normal"><a href="#__codelineno-6-32">32</a></span>
+<span class="normal"><a href="#__codelineno-6-33">33</a></span>
+<span class="normal"><a href="#__codelineno-6-34">34</a></span>
+<span class="normal"><a href="#__codelineno-6-35">35</a></span>
+<span class="normal"><a href="#__codelineno-6-36">36</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># controllers/language.py：语言的选择</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlsplit</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Blueprint</span><span class="p">,</span> <span class="n">abort</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">request</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">translation.translator</span><span class="w"> </span><span class="kn">import</span> <span class="n">Translator</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="n">language</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s2">"language"</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="n">LANGUAGE_COOKIE</span> <span class="o">=</span> <span class="s2">"language"</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="c1"># GET /language/fr：将选择存入 Cookie，然后返回上一个页面</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="nd">@language</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/language/&lt;code&gt;"</span><span class="p">)</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">change</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a>    <span class="k">if</span> <span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">Translator</span><span class="o">.</span><span class="n">LANGUAGES</span><span class="p">:</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a>        <span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">redirect</span><span class="p">(</span><span class="n">origin_page</span><span class="p">())</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19"></a>    <span class="c1"># 该 Cookie：有效期一年，页面的 JavaScript 无法读取（httponly），</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20"></a>    <span class="c1"># 来自其他站点的 POST 请求绝不会携带它（samesite）</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21"></a>    <span class="n">response</span><span class="o">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="n">LANGUAGE_COOKIE</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">max_age</span><span class="o">=</span><span class="mi">365</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">,</span> <span class="n">httponly</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22"></a>                        <span class="n">samesite</span><span class="o">=</span><span class="s2">"Lax"</span><span class="p">)</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23"></a>    <span class="k">return</span> <span class="n">response</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24"></a>
+<a id="__codelineno-6-25" name="__codelineno-6-25"></a>
+<a id="__codelineno-6-26" name="__codelineno-6-26"></a><span class="c1"># 我们来自的页面（Referer 头部），只保留其路径：</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27"></a><span class="c1"># 若重定向到请求中带来的完整地址，就可能</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28"></a><span class="c1"># 把用户送到另一个站点（"开放重定向" 漏洞）</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29"></a><span class="k">def</span><span class="w"> </span><span class="nf">origin_page</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30"></a>    <span class="n">url</span> <span class="o">=</span> <span class="n">urlsplit</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Referer"</span><span class="p">,</span> <span class="s2">""</span><span class="p">))</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31"></a>    <span class="n">path</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">path</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32"></a>    <span class="c1"># "//site.com/..." 会被浏览器理解为</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33"></a>    <span class="c1"># 另一个站点上的地址：同样予以拒绝</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"//"</span><span class="p">):</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35"></a>        <span class="k">return</span> <span class="s2">"/"</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36"></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">?</span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">query</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">query</span> <span class="k">else</span> <span class="n">path</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 16 行：未知的语言代码：404；</li>
+<li>第 18 行：该动作以重定向响应，指向用户来自的页面：用户以新的语言返回到该页面；</li>
+<li>第 21–22 行：响应中包含一个 <strong>Cookie</strong>，浏览器会在每次请求时将其发回。<strong><em>[max_age]</em></strong> 是它的生存时间，单位为秒：一年。<strong><em>[httponly=True]</em></strong> 使页面上的 <em>[JavaScript]</em> 无法看到它；<strong><em>[samesite=&quot;Lax&quot;]</em></strong> 可防止浏览器在来自其他站点的 POST 请求中发送它。与会话 Cookie（示例 20）不同，这个 Cookie 没有签名：用户修改它也没有问题，因为服务器只接受受支持的语言；</li>
+<li>第 29–36 行：原始页面由请求中的 <strong><em>[Referer]</em></strong> 头部指定（HTTP 标准中使用的就是这个拼写错误的版本，只有一个 <strong><em>[r]</em></strong>），浏览器会用包含该链接的页面的 URL 来填充它。但这个头部来自客户端，客户端可以在其中放入任何内容。盲目地重定向到这个地址，会使我们的应用程序变成<strong>一个</strong>*开放重定向*：带有我们域名的恶意链接可能会把用户送到恶意网站。因此，我们只保留 URL 的路径和参数（<strong><em>[urlsplit]</em></strong> 将其分解为各个组成部分），并拒绝任何以 <strong><em>[//]</em></strong> 开头的路径，浏览器会把这样的路径解释为另一个站点的地址。</li>
+</ul>
+<h3 id="516-动作controllerspagespy">5.1.6. <span style="color: #1f4d78">动作：controllers/pages.py</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span>
+<span class="normal"><a href="#__codelineno-7-26">26</a></span>
+<span class="normal"><a href="#__codelineno-7-27">27</a></span>
+<span class="normal"><a href="#__codelineno-7-28">28</a></span>
+<span class="normal"><a href="#__codelineno-7-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># controllers/pages.py：动作对语言一无所知：它们</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="c1"># 提供数据，由视图负责翻译和格式化</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">decimal</span><span class="w"> </span><span class="kn">import</span> <span class="n">Decimal</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Blueprint</span><span class="p">,</span> <span class="n">render_template</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="n">pages</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s2">"pages"</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="nd">@dataclass</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">Product</span><span class="p">:</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a>    <span class="n">price</span><span class="p">:</span> <span class="n">Decimal</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="nd">@pages</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="k">def</span><span class="w"> </span><span class="nf">home</span><span class="p">():</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">"pages/home.html"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Marie"</span><span class="p">,</span> <span class="n">today</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">23</span><span class="p">))</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21"></a>
+<a id="__codelineno-7-22" name="__codelineno-7-22"></a>
+<a id="__codelineno-7-23" name="__codelineno-7-23"></a><span class="nd">@pages</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/products"</span><span class="p">)</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">products</span><span class="p">():</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25"></a>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">"pages/products.html"</span><span class="p">,</span> <span class="n">products</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26"></a>        <span class="n">Product</span><span class="p">(</span><span class="s2">"Keyboard"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"25"</span><span class="p">)),</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27"></a>        <span class="n">Product</span><span class="p">(</span><span class="s2">"Mouse"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"12.5"</span><span class="p">)),</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28"></a>        <span class="n">Product</span><span class="p">(</span><span class="s2">"Screen"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"1149"</span><span class="p">)),</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29"></a>    <span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<p>动作与语言无关：它们提供原始数据（姓名、日期、金额）。翻译和格式化由视图负责。</p>
+<h3 id="517-在视图中翻译">5.1.7. <span style="color: #1f4d78">在视图中翻译</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="cp">&lt;!doctype html&gt;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>{# g.language：请求的语言，"fr" 或 "en" #}
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">"{{ g.language }}"</span><span class="p">&gt;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">"utf-8"</span><span class="p">&gt;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a>  {# 标题是一个键，由页面提供（title_key 变量），由布局翻译 #}
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a>  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{{ t(title_key) }}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a>  <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">"stylesheet"</span> <span class="na">href</span><span class="o">=</span><span class="s">"{{ url_for('bootstrap.static', filename='css/bootstrap.min.css') }}"</span><span class="p">&gt;</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a>  <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">"stylesheet"</span> <span class="na">href</span><span class="o">=</span><span class="s">"{{ url_for('static', filename='css/styles.css') }}"</span><span class="p">&gt;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"container py-3"</span><span class="p">&gt;</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a>    {% include "fragments/navbar.html" %}
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a>    <span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a>      {% block content %}{% endblock %}
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a>    <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 3 行：页面的 <strong><em>[lang]</em></strong> 属性向浏览器、搜索引擎和屏幕阅读器指明页面的语言；</li>
+<li>第 7 行：页面标题在每个页面中各不相同，但由布局模板负责翻译。每个页面在变量 <strong>[title_key]</strong> 中提供其标题的<strong><em>键</em></strong>。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="p">&lt;</span><span class="nt">nav</span> <span class="na">class</span><span class="o">=</span><span class="s">"navbar navbar-expand bg-light rounded mb-3 px-3"</span><span class="p">&gt;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"navbar-nav me-auto"</span><span class="p">&gt;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>    {# t('KEY')：键的翻译，使用请求的语言 #}
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"nav-link"</span> <span class="na">href</span><span class="o">=</span><span class="s">"/"</span><span class="p">&gt;</span>{{ t("MENU.HOME") }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"nav-link"</span> <span class="na">href</span><span class="o">=</span><span class="s">"/products"</span><span class="p">&gt;</span>{{ t("MENU.PRODUCTS") }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>  {# 当前语言高亮显示 #}
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"btn-group btn-group-sm"</span><span class="p">&gt;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>    {% for code in ["fr", "en"] %}
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"btn {{ 'btn-primary' if g.language == code else 'btn-outline-primary' }}"</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a>       <span class="na">href</span><span class="o">=</span><span class="s">"/language/{{ code }}"</span><span class="p">&gt;</span>{{ code | upper }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a>    {% endfor %}
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 4–5 行：菜单文本，已翻译；</li>
+<li>第 9–12 行：每种语言一个按钮，指向动作 <strong><em>[/language/&lt;code&gt;]</em></strong>。当前语言被突出显示（<strong><em>[btn-primary]</em></strong>，实心按钮）。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>{% extends "layout.html" %}
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>{# 在块之外定义的变量对布局可见 #}
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>{% set title_key = "HOME.TITLE" %}
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>{% block content %}
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a>  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{ t("HOME.TITLE") }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a>  {# 一个参数：t 函数的关键字参数 #}
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ t("HOME.HELLO", name=name) }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a>  {# 先格式化日期，再将其作为 [date] 参数传入 #}
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ t("HOME.DATE", date=today | long_date) }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a>{% endblock %}
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 3 行：在继承了布局模板的页面中，<strong>在块之外</strong>定义的变量对布局模板可见：页面就是这样把它的标题键传给布局模板的。（相反，在块内部定义的变量则只在该块内部有效。）；</li>
+<li>第 8 行：文本参数是函数 <strong><em>[t]</em></strong> 的命名参数；</li>
+<li>第 10 行：日期，按请求的语言格式化，然后作为参数传入。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span>
+<span class="normal"><a href="#__codelineno-11-17">17</a></span>
+<span class="normal"><a href="#__codelineno-11-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>{% extends "layout.html" %}
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>{% set title_key = "PRODUCTS.TITLE" %}
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>{% block content %}
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a>  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{ t("PRODUCTS.TITLE") }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a>  <span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">"table table-sm w-auto"</span><span class="p">&gt;</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a>    <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;&lt;</span><span class="nt">tr</span><span class="p">&gt;&lt;</span><span class="nt">th</span><span class="p">&gt;</span>{{ t("PRODUCTS.NAME") }}<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;&lt;</span><span class="nt">th</span> <span class="na">class</span><span class="o">=</span><span class="s">"text-end"</span><span class="p">&gt;</span>{{ t("PRODUCTS.PRICE") }}<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;&lt;/</span><span class="nt">tr</span><span class="p">&gt;&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a>    <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a>      {% for product in products %}
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a>      <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a>        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ product.name }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12"></a>        <span class="p">&lt;</span><span class="nt">td</span> <span class="na">class</span><span class="o">=</span><span class="s">"text-end"</span><span class="p">&gt;</span>{{ product.price | money }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13"></a>      <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14"></a>      {% endfor %}
+<a id="__codelineno-11-15" name="__codelineno-11-15"></a>    <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16"></a>  <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ t("PRODUCTS.COUNT", n=products | length) }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18"></a>{% endblock %}
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>第 17 行：计算得到的参数。不过，产品名称不会被翻译：它们是<strong>数据</strong> ，在真实的应用程序中会来自数据库。</li>
+</ul>
+<h3 id="518-执行">5.1.8. <span style="color: #1f4d78">执行</span></h3>
+<p>主页，先是英语（默认语言），点击“FR”按钮后变为法语：</p>
+<p><img src="images/10000000000002BE00000111143C2F0B.png" width="428" height="166" style="width:11.322cm;height:4.403cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BE00000111143C2F0B.png" /></p>
+<p><img src="images/10000000000002BE000001119D863981.png" width="428" height="166" style="width:11.322cm;height:4.403cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BE000001119D863981.png" /></p>
+<p>产品页面，两种语言各一份。金额遵循各自语言的惯例：</p>
+<p><img src="images/10000000000002BE0000017D7D07205F.png" width="428" height="232" style="width:11.322cm;height:6.145cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BE0000017D7D07205F.png" /></p>
+<p><img src="images/10000000000002BE0000017DDF8D9F88.png" width="428" height="232" style="width:11.322cm;height:6.145cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BE0000017DDF8D9F88.png" /></p>
+<p>用 <em>[curl]</em> 观察语言切换。选项 <strong><em>[-H]</em></strong> 提供浏览器会发送的头部 <strong><em>[Referer]</em></strong> ：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>curl -i -H "Referer: http://localhost:5000/products" http://localhost:5000/language/en
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span>
+<span class="normal"><a href="#__codelineno-13-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>HTTP/1.1 302 FOUND
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>Content-Type: text/html; charset=utf-8
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>Content-Length: 205
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a>Location: /products
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a>Set-Cookie: language=en; Expires=Sun, 26 Sep 2027 13:37:04 GMT; Max-Age=31536000; HttpOnly; Path=/; SameSite=Lax
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a>...
+</code></pre></div></td></tr></table></div>
+<p>重定向把你带回原来的页面，并且 Cookie 被设置为保存一年。指向另一个站点的 <strong><em>[Referer]</em></strong> 不会把你重定向到那里：只保留它的路径。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>curl -i -H "Referer: https://pirate.example/trap" http://localhost:5000/language/en
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>curl -i -H "Referer: http://localhost:5000//pirate.example/x" http://localhost:5000/language/fr
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>HTTP/1.1 302 FOUND
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a>...
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>Location: /trap
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a>HTTP/1.1 302 FOUND
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>...
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a>Location: /
+</code></pre></div></td></tr></table></div>
+<p>页面 <strong><em>[/trap]</em></strong> 在我们的站点上并不存在：用户会收到 404 错误，但仍停留在我们的站点上。最后，带着 Cookie <strong><em>[language=en]</em></strong> （<strong><em>[curl]</em></strong> 的选项 <em>[-b]</em>）请求主页：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>curl -b "language=en" http://localhost:5000/
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-17-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-17-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-17-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-17-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-17-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-17-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-17-10">10</a></span>
+<span class="normal"><a href="#__codelineno-17-11">11</a></span>
+<span class="normal"><a href="#__codelineno-17-12">12</a></span>
+<span class="normal"><a href="#__codelineno-17-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="cp">&lt;!doctype html&gt;</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">"en"</span><span class="p">&gt;</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a>  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">"utf-8"</span><span class="p">&gt;</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a>  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Welcome<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6"></a>  ...
+<a id="__codelineno-17-7" name="__codelineno-17-7"></a>    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"nav-link"</span> <span class="na">href</span><span class="o">=</span><span class="s">"/"</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8"></a>    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"nav-link"</span> <span class="na">href</span><span class="o">=</span><span class="s">"/products"</span><span class="p">&gt;</span>Products<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9"></a>  ...
+<a id="__codelineno-17-10" name="__codelineno-17-10"></a>  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Welcome<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hello Marie!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Today is Wednesday, September 23, 2026.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13"></a>...
+</code></pre></div></td></tr></table></div>
+<p>选择语言的另一种方式是读取浏览器的 <strong><em>[Accept-Language]</em></strong> 头部（示例 12）。两者经常结合使用：首次访问时使用浏览器的语言，之后使用用户选择的语言。本案例研究侧重于 Cookie，以英语为默认语言。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 Anthropic 的 AI <strong>Claude</strong> 应 <strong>Serge Tahé</strong> 的请求编写，根据
+        <em>知识共享署名 – 禁止商业使用 –
+        共享 3.0 未本地化版</em>的条款向公众开放。
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
